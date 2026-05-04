@@ -1,0 +1,3520 @@
+{
+  "schema_version": 1,
+  "intensity_scale": {
+    "min": 0.0,
+    "max": 3.0,
+    "meaning": "Suggested controller effort compatible with PracticeEnv w_max=3.0"
+  },
+  "level_scale": {
+    "min": 0.0,
+    "max": 1.0,
+    "meaning": "Minimum normalized benchmark score required to unlock the workout"
+  },
+  "types": {
+    "G": "Gymnastics",
+    "C": "Cardio",
+    "W": "Weightlifting"
+  },
+  "workouts": [
+    {
+      "id": "wod_001",
+      "description": "AMRAP 20 minutes: 10 walking lunges; 8 push-ups. Score total rounds and reps.",
+      "intensity_score": 1.09,
+      "type": "G",
+      "level": 0.0
+    },
+    {
+      "id": "wod_002",
+      "description": "EMOM 15 minutes: rotate through 2 front squats (115 lb); 2 back squats (155 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 0.97,
+      "type": "W",
+      "level": 0.03
+    },
+    {
+      "id": "wod_003",
+      "description": "EMOM 20 minutes: rotate through Run 100 m; Row 100 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.65,
+      "type": "C",
+      "level": 0.05
+    },
+    {
+      "id": "wod_004",
+      "description": "6 rounds for time: 9 air squats; 12 walking lunges; 6 push-ups. Record completion time.",
+      "intensity_score": 1.21,
+      "type": "G",
+      "level": 0.08
+    },
+    {
+      "id": "wod_005",
+      "description": "EMOM 18 minutes: rotate through Ski erg 100 m; 3 push presses (45 lb); Shuttle run 100 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.85,
+      "type": "C",
+      "level": 0.1
+    },
+    {
+      "id": "wod_006",
+      "description": "AMRAP 20 minutes: 10 air squats; 5 push-ups; Bike 10 cal. Score total rounds and reps.",
+      "intensity_score": 1.01,
+      "type": "G",
+      "level": 0.12
+    },
+    {
+      "id": "wod_007",
+      "description": "EMOM 20 minutes: rotate through 2 back squats (155 lb); 7 air squats; 3 front squats (95 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.15,
+      "type": "W",
+      "level": 0.22
+    },
+    {
+      "id": "wod_008",
+      "description": "6 rounds for time: Row 300 m; 4 back squats (155 lb). Record completion time.",
+      "intensity_score": 1.18,
+      "type": "C",
+      "level": 0.22
+    },
+    {
+      "id": "wod_009",
+      "description": "EMOM 12 minutes: rotate through 3 push-ups; Row 100 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.65,
+      "type": "G",
+      "level": 0.11
+    },
+    {
+      "id": "wod_010",
+      "description": "EMOM 24 minutes: rotate through Ski erg 150 m; 3 push presses (75 lb); Run 150 m. Use the remaining time each minute as rest.",
+      "intensity_score": 1.07,
+      "type": "C",
+      "level": 0.22
+    },
+    {
+      "id": "wod_011",
+      "description": "AMRAP 12 minutes: 13 air squats; 8 walking lunges. Score total rounds and reps.",
+      "intensity_score": 0.91,
+      "type": "G",
+      "level": 0.13
+    },
+    {
+      "id": "wod_012",
+      "description": "5 rounds for time: 2 deadlifts (135 lb); 4 front squats (115 lb); 6 dumbbell snatches (25 lb). Record completion time.",
+      "intensity_score": 1.15,
+      "type": "W",
+      "level": 0.22
+    },
+    {
+      "id": "wod_013",
+      "description": "AMRAP 24 minutes: Shuttle run 150 m; 8 wall-ball shots (14 lb); Row 150 m. Score total rounds and reps.",
+      "intensity_score": 1.14,
+      "type": "C",
+      "level": 0.22
+    },
+    {
+      "id": "wod_014",
+      "description": "AMRAP 18 minutes: 7 box jumps; 13 sit-ups. Score total rounds and reps.",
+      "intensity_score": 1.14,
+      "type": "G",
+      "level": 0.21
+    },
+    {
+      "id": "wod_015",
+      "description": "EMOM 20 minutes: rotate through Row 200 m; 4 push-ups; 11 sit-ups. Use the remaining time each minute as rest.",
+      "intensity_score": 1.03,
+      "type": "C",
+      "level": 0.16
+    },
+    {
+      "id": "wod_016",
+      "description": "EMOM 12 minutes: rotate through 3 burpees; 11 air squats; 3 deadlifts (95 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 0.93,
+      "type": "G",
+      "level": 0.22
+    },
+    {
+      "id": "wod_017",
+      "description": "EMOM 12 minutes: rotate through 7 wall-ball shots (10 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.2,
+      "type": "W",
+      "level": 0.22
+    },
+    {
+      "id": "wod_018",
+      "description": "EMOM 18 minutes: rotate through Ski erg 150 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.72,
+      "type": "C",
+      "level": 0.11
+    },
+    {
+      "id": "wod_019",
+      "description": "EMOM 15 minutes: rotate through 7 walking lunges. Use the remaining time each minute as rest.",
+      "intensity_score": 0.93,
+      "type": "G",
+      "level": 0.13
+    },
+    {
+      "id": "wod_020",
+      "description": "EMOM 10 minutes: rotate through Row 100 m; Run 100 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.55,
+      "type": "C",
+      "level": 0.07
+    },
+    {
+      "id": "wod_021",
+      "description": "AMRAP 18 minutes: 5 burpees; 14 walking lunges. Score total rounds and reps.",
+      "intensity_score": 1.12,
+      "type": "G",
+      "level": 0.21
+    },
+    {
+      "id": "wod_022",
+      "description": "AMRAP 12 minutes: 8 wall-ball shots (14 lb); 4 push presses (75 lb); 7 burpees. Score total rounds and reps.",
+      "intensity_score": 1.12,
+      "type": "W",
+      "level": 0.22
+    },
+    {
+      "id": "wod_023",
+      "description": "AMRAP 12 minutes: Shuttle run 150 m; 8 wall-ball shots (10 lb). Score total rounds and reps.",
+      "intensity_score": 0.89,
+      "type": "C",
+      "level": 0.22
+    },
+    {
+      "id": "wod_024",
+      "description": "7 rounds for time: 6 box jumps; 4 burpees. Record completion time.",
+      "intensity_score": 1.02,
+      "type": "G",
+      "level": 0.2
+    },
+    {
+      "id": "wod_025",
+      "description": "EMOM 15 minutes: rotate through Ski erg 100 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.6,
+      "type": "C",
+      "level": 0.09
+    },
+    {
+      "id": "wod_026",
+      "description": "EMOM 20 minutes: rotate through 11 air squats. Use the remaining time each minute as rest.",
+      "intensity_score": 1.35,
+      "type": "G",
+      "level": 0.16
+    },
+    {
+      "id": "wod_027",
+      "description": "6 rounds for time: 4 front squats (115 lb); Shuttle run 100 m. Record completion time.",
+      "intensity_score": 1.09,
+      "type": "W",
+      "level": 0.22
+    },
+    {
+      "id": "wod_028",
+      "description": "5 rounds for time: Ski erg 100 m; Bike 6 cal. Record completion time.",
+      "intensity_score": 0.72,
+      "type": "C",
+      "level": 0.11
+    },
+    {
+      "id": "wod_029",
+      "description": "AMRAP 24 minutes: 14 walking lunges; 5 push-ups. Score total rounds and reps.",
+      "intensity_score": 1.24,
+      "type": "G",
+      "level": 0.18
+    },
+    {
+      "id": "wod_030",
+      "description": "AMRAP 18 minutes: Shuttle run 100 m; Row 150 m. Score total rounds and reps.",
+      "intensity_score": 0.63,
+      "type": "C",
+      "level": 0.1
+    },
+    {
+      "id": "wod_031",
+      "description": "3 rounds for time: 9 sit-ups; 6 burpees. Record completion time.",
+      "intensity_score": 0.86,
+      "type": "G",
+      "level": 0.18
+    },
+    {
+      "id": "wod_032",
+      "description": "EMOM 12 minutes: rotate through 6 wall-ball shots (14 lb); 2 back squats (155 lb); 7 sit-ups. Use the remaining time each minute as rest.",
+      "intensity_score": 1.08,
+      "type": "W",
+      "level": 0.22
+    },
+    {
+      "id": "wod_033",
+      "description": "EMOM 24 minutes: rotate through Bike 6 cal; 6 wall-ball shots (14 lb); Ski erg 150 m. Use the remaining time each minute as rest.",
+      "intensity_score": 1.21,
+      "type": "C",
+      "level": 0.22
+    },
+    {
+      "id": "wod_034",
+      "description": "AMRAP 20 minutes: 5 push-ups; 7 dumbbell snatches (25 lb). Score total rounds and reps.",
+      "intensity_score": 1.13,
+      "type": "G",
+      "level": 0.22
+    },
+    {
+      "id": "wod_035",
+      "description": "AMRAP 20 minutes: Shuttle run 150 m; 7 push-ups; Row 350 m. Score total rounds and reps.",
+      "intensity_score": 0.88,
+      "type": "C",
+      "level": 0.14
+    },
+    {
+      "id": "wod_036",
+      "description": "AMRAP 10 minutes: 17 air squats; 5 push-ups. Score total rounds and reps.",
+      "intensity_score": 0.88,
+      "type": "G",
+      "level": 0.14
+    },
+    {
+      "id": "wod_037",
+      "description": "8 rounds for time: 2 front squats (95 lb); 12 walking lunges; 8 dumbbell snatches (25 lb). Record completion time.",
+      "intensity_score": 1.35,
+      "type": "W",
+      "level": 0.22
+    },
+    {
+      "id": "wod_038",
+      "description": "EMOM 10 minutes: rotate through Run 100 m; 7 air squats; Shuttle run 50 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.62,
+      "type": "C",
+      "level": 0.1
+    },
+    {
+      "id": "wod_039",
+      "description": "EMOM 10 minutes: rotate through 4 burpees; Ski erg 150 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.73,
+      "type": "G",
+      "level": 0.16
+    },
+    {
+      "id": "wod_040",
+      "description": "8 rounds for time: Bike 6 cal; Run 100 m. Record completion time.",
+      "intensity_score": 0.79,
+      "type": "C",
+      "level": 0.1
+    },
+    {
+      "id": "wod_041",
+      "description": "EMOM 18 minutes: rotate through 9 walking lunges; 6 dumbbell snatches (25 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.28,
+      "type": "G",
+      "level": 0.22
+    },
+    {
+      "id": "wod_042",
+      "description": "AMRAP 12 minutes: 3 front squats (65 lb); 10 kettlebell swings (26 lb). Score total rounds and reps.",
+      "intensity_score": 1.07,
+      "type": "W",
+      "level": 0.22
+    },
+    {
+      "id": "wod_043",
+      "description": "4 rounds for time: Shuttle run 100 m; Run 100 m. Record completion time.",
+      "intensity_score": 0.6,
+      "type": "C",
+      "level": 0.09
+    },
+    {
+      "id": "wod_044",
+      "description": "EMOM 24 minutes: rotate through 4 push-ups; Ski erg 100 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.82,
+      "type": "G",
+      "level": 0.13
+    },
+    {
+      "id": "wod_045",
+      "description": "EMOM 18 minutes: rotate through Run 150 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.75,
+      "type": "C",
+      "level": 0.1
+    },
+    {
+      "id": "wod_046",
+      "description": "8 rounds for time: Bike 10 cal; Ski erg 400 m; Row 1000 m. Record completion time.",
+      "intensity_score": 1.91,
+      "type": "C",
+      "level": 0.26
+    },
+    {
+      "id": "wod_047",
+      "description": "5 intervals, rest 120 seconds after each interval: Row 750 m; 11 sit-ups; 2 clean and jerks (155 lb). Keep efforts repeatable.",
+      "intensity_score": 1.45,
+      "type": "C",
+      "level": 0.54
+    },
+    {
+      "id": "wod_048",
+      "description": "AMRAP 18 minutes: 12 push presses (115 lb); 20 air squats; 12 deadlifts (315 lb). Score total rounds and reps.",
+      "intensity_score": 2.08,
+      "type": "W",
+      "level": 0.49
+    },
+    {
+      "id": "wod_049",
+      "description": "4 rounds for time: 10 push-ups; 10 dumbbell snatches (50 lb). Record completion time.",
+      "intensity_score": 1.41,
+      "type": "G",
+      "level": 0.38
+    },
+    {
+      "id": "wod_050",
+      "description": "3 rounds for time: Row 400 m; 12 deadlifts (315 lb); Shuttle run 300 m. Record completion time.",
+      "intensity_score": 1.24,
+      "type": "C",
+      "level": 0.39
+    },
+    {
+      "id": "wod_051",
+      "description": "AMRAP 24 minutes: 10 burpees; Row 500 m. Score total rounds and reps.",
+      "intensity_score": 1.43,
+      "type": "G",
+      "level": 0.25
+    },
+    {
+      "id": "wod_052",
+      "description": "EMOM 15 minutes: rotate through Row 400 m; 7 power cleans (115 lb); 1 rope climbs. Use the remaining time each minute as rest.",
+      "intensity_score": 1.24,
+      "type": "C",
+      "level": 0.46
+    },
+    {
+      "id": "wod_053",
+      "description": "EMOM 15 minutes: rotate through 11 Double-unders; Bike 11 cal; Ski erg 150 m. Use the remaining time each minute as rest.",
+      "intensity_score": 1.06,
+      "type": "C",
+      "level": 0.26
+    },
+    {
+      "id": "wod_054",
+      "description": "EMOM 10 minutes: rotate through 4 clean and jerks (185 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.31,
+      "type": "W",
+      "level": 0.54
+    },
+    {
+      "id": "wod_055",
+      "description": "EMOM 20 minutes: rotate through 7 deadlifts (135 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.51,
+      "type": "W",
+      "level": 0.33
+    },
+    {
+      "id": "wod_056",
+      "description": "AMRAP 12 minutes: Bike 30 cal; Shuttle run 400 m. Score total rounds and reps.",
+      "intensity_score": 1.12,
+      "type": "C",
+      "level": 0.16
+    },
+    {
+      "id": "wod_057",
+      "description": "5 rounds for time: 7 power cleans (65 lb); 15 kettlebell swings (18 lb); 15 thrusters (65 lb). Record completion time.",
+      "intensity_score": 1.88,
+      "type": "W",
+      "level": 0.46
+    },
+    {
+      "id": "wod_058",
+      "description": "EMOM 12 minutes: rotate through 2 rope climbs; Ski erg 150 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.97,
+      "type": "G",
+      "level": 0.42
+    },
+    {
+      "id": "wod_059",
+      "description": "EMOM 20 minutes: rotate through 7 thrusters (115 lb); 4 dumbbell snatches (70 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.7,
+      "type": "W",
+      "level": 0.49
+    },
+    {
+      "id": "wod_060",
+      "description": "6 rounds for time: 20 Double-unders; Shuttle run 300 m; Run 100 m. Record completion time.",
+      "intensity_score": 1.35,
+      "type": "C",
+      "level": 0.3
+    },
+    {
+      "id": "wod_061",
+      "description": "EMOM 24 minutes: rotate through 8 push-ups. Use the remaining time each minute as rest.",
+      "intensity_score": 1.28,
+      "type": "G",
+      "level": 0.19
+    },
+    {
+      "id": "wod_062",
+      "description": "EMOM 20 minutes: rotate through 3 muscle-ups. Use the remaining time each minute as rest.",
+      "intensity_score": 1.19,
+      "type": "G",
+      "level": 0.54
+    },
+    {
+      "id": "wod_063",
+      "description": "6 rounds for time: Shuttle run 200 m; 12 thrusters (95 lb). Record completion time.",
+      "intensity_score": 1.72,
+      "type": "C",
+      "level": 0.48
+    },
+    {
+      "id": "wod_064",
+      "description": "5 intervals, rest 120 seconds after each interval: 2 pull-ups. Keep efforts repeatable.",
+      "intensity_score": 0.76,
+      "type": "G",
+      "level": 0.23
+    },
+    {
+      "id": "wod_065",
+      "description": "EMOM 18 minutes: rotate through 2 power snatches (115 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.2,
+      "type": "W",
+      "level": 0.47
+    },
+    {
+      "id": "wod_066",
+      "description": "8 rounds for time: 12 front squats (65 lb); 30 sit-ups. Record completion time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.54
+    },
+    {
+      "id": "wod_067",
+      "description": "3 rounds for time: 10 dumbbell snatches (70 lb); 5 muscle-ups. Record completion time.",
+      "intensity_score": 1.48,
+      "type": "W",
+      "level": 0.57
+    },
+    {
+      "id": "wod_068",
+      "description": "EMOM 24 minutes: rotate through 8 thrusters (115 lb); 14 kettlebell swings (53 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 2.73,
+      "type": "W",
+      "level": 0.62
+    },
+    {
+      "id": "wod_069",
+      "description": "AMRAP 18 minutes: Shuttle run 200 m; 16 walking lunges; Row 1000 m. Score total rounds and reps.",
+      "intensity_score": 1.34,
+      "type": "C",
+      "level": 0.19
+    },
+    {
+      "id": "wod_070",
+      "description": "AMRAP 8 minutes: 100 Double-unders; Ski erg 150 m; 9 power snatches (75 lb). Score total rounds and reps.",
+      "intensity_score": 1.77,
+      "type": "C",
+      "level": 0.51
+    },
+    {
+      "id": "wod_071",
+      "description": "For time, complete the chipper: 19 dumbbell snatches (25 lb); 11 push presses (45 lb); 8 front squats (95 lb); 19 wall-ball shots (10 lb). Partition as needed and record total time.",
+      "intensity_score": 2.96,
+      "type": "W",
+      "level": 0.55
+    },
+    {
+      "id": "wod_072",
+      "description": "For time, complete the chipper: 80 Double-unders; Ski erg 400 m; Bike 48 cal; Row 650 m; 8 power cleans (185 lb); Shuttle run 300 m. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 0.86
+    },
+    {
+      "id": "wod_073",
+      "description": "EMOM 10 minutes: rotate through 1 handstand push-ups; 14 wall-ball shots (10 lb); 3 deadlifts (275 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.17,
+      "type": "G",
+      "level": 0.42
+    },
+    {
+      "id": "wod_074",
+      "description": "For time, complete the chipper: Run 300 m; 64 sit-ups; Ski erg 800 m; Bike 32 cal; Shuttle run 300 m; 64 Double-unders. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 0.7
+    },
+    {
+      "id": "wod_075",
+      "description": "AMRAP 24 minutes: 3 rope climbs; 5 power cleans (155 lb); 1 muscle-ups. Score total rounds and reps.",
+      "intensity_score": 1.28,
+      "type": "G",
+      "level": 0.56
+    },
+    {
+      "id": "wod_076",
+      "description": "8 rounds for time: Ski erg 400 m; 12 box jumps. Record completion time.",
+      "intensity_score": 1.64,
+      "type": "C",
+      "level": 0.28
+    },
+    {
+      "id": "wod_077",
+      "description": "AMRAP 12 minutes: 12 kettlebell swings (53 lb); 7 deadlifts (315 lb). Score total rounds and reps.",
+      "intensity_score": 1.48,
+      "type": "W",
+      "level": 0.41
+    },
+    {
+      "id": "wod_078",
+      "description": "4 rounds for time: 16 dumbbell snatches (35 lb); Ski erg 250 m; Bike 15 cal. Record completion time.",
+      "intensity_score": 1.46,
+      "type": "W",
+      "level": 0.35
+    },
+    {
+      "id": "wod_079",
+      "description": "AMRAP 20 minutes: Bike 15 cal; Ski erg 400 m. Score total rounds and reps.",
+      "intensity_score": 1.17,
+      "type": "C",
+      "level": 0.17
+    },
+    {
+      "id": "wod_080",
+      "description": "6 intervals, rest 45 seconds after each interval: 10 air squats; 13 box jumps; 5 clean and jerks (155 lb). Keep efforts repeatable.",
+      "intensity_score": 1.58,
+      "type": "G",
+      "level": 0.56
+    },
+    {
+      "id": "wod_081",
+      "description": "5 rounds for time: 5 power snatches (45 lb); Bike 15 cal. Record completion time.",
+      "intensity_score": 1.44,
+      "type": "W",
+      "level": 0.43
+    },
+    {
+      "id": "wod_082",
+      "description": "For time, complete the chipper: 16 handstand push-ups; 24 push-ups; Run 500 m; 3 rope climbs; 24 box jumps. Partition as needed and record total time.",
+      "intensity_score": 2.67,
+      "type": "G",
+      "level": 0.64
+    },
+    {
+      "id": "wod_083",
+      "description": "AMRAP 20 minutes: Row 400 m; 100 Double-unders. Score total rounds and reps.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 0.64
+    },
+    {
+      "id": "wod_084",
+      "description": "5 rounds for time: 5 back squats (275 lb); 5 push presses (45 lb). Record completion time.",
+      "intensity_score": 1.35,
+      "type": "W",
+      "level": 0.4
+    },
+    {
+      "id": "wod_085",
+      "description": "For time, complete the chipper: 11 push presses (95 lb); 19 power snatches (65 lb); 26 dumbbell snatches (70 lb); 64 sit-ups; 8 deadlifts (225 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.9
+    },
+    {
+      "id": "wod_086",
+      "description": "For time, complete the chipper: 11 front squats (155 lb); 11 clean and jerks (65 lb); 8 muscle-ups; 19 power snatches (115 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.78
+    },
+    {
+      "id": "wod_087",
+      "description": "EMOM 10 minutes: rotate through 5 thrusters (135 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.3,
+      "type": "W",
+      "level": 0.46
+    },
+    {
+      "id": "wod_088",
+      "description": "6 rounds for time: 12 pull-ups; Ski erg 150 m; Row 750 m. Record completion time.",
+      "intensity_score": 1.52,
+      "type": "G",
+      "level": 0.33
+    },
+    {
+      "id": "wod_089",
+      "description": "AMRAP 15 minutes: 10 push-ups; 3 back squats (95 lb); 7 clean and jerks (115 lb). Score total rounds and reps.",
+      "intensity_score": 1.27,
+      "type": "G",
+      "level": 0.49
+    },
+    {
+      "id": "wod_090",
+      "description": "AMRAP 10 minutes: 7 thrusters (45 lb); 9 clean and jerks (115 lb). Score total rounds and reps.",
+      "intensity_score": 1.31,
+      "type": "W",
+      "level": 0.48
+    },
+    {
+      "id": "wod_091",
+      "description": "AMRAP 12 minutes: 20 wall-ball shots (10 lb); 2 clean and jerks (185 lb); 7 deadlifts (185 lb). Score total rounds and reps.",
+      "intensity_score": 1.56,
+      "type": "W",
+      "level": 0.57
+    },
+    {
+      "id": "wod_092",
+      "description": "6 rounds for time: 40 Double-unders; Run 300 m. Record completion time.",
+      "intensity_score": 2.38,
+      "type": "C",
+      "level": 0.43
+    },
+    {
+      "id": "wod_093",
+      "description": "3 rounds for time: 5 clean and jerks (155 lb); 5 power snatches (95 lb). Record completion time.",
+      "intensity_score": 1.3,
+      "type": "W",
+      "level": 0.51
+    },
+    {
+      "id": "wod_094",
+      "description": "EMOM 10 minutes: rotate through 6 deadlifts (95 lb); 3 push presses (95 lb); 11 dumbbell snatches (70 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.29,
+      "type": "W",
+      "level": 0.39
+    },
+    {
+      "id": "wod_095",
+      "description": "6 rounds for time: Shuttle run 200 m; Bike 8 cal; Run 200 m. Record completion time.",
+      "intensity_score": 0.89,
+      "type": "C",
+      "level": 0.13
+    },
+    {
+      "id": "wod_096",
+      "description": "EMOM 18 minutes: rotate through 6 deadlifts (225 lb); 55 Double-unders. Use the remaining time each minute as rest.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.57
+    },
+    {
+      "id": "wod_097",
+      "description": "5 rounds for time: 3 handstand push-ups; 10 push presses (65 lb). Record completion time.",
+      "intensity_score": 1.37,
+      "type": "G",
+      "level": 0.44
+    },
+    {
+      "id": "wod_098",
+      "description": "For time, complete the chipper: 19 pull-ups; Row 250 m; 5 thrusters (65 lb); 16 burpees. Partition as needed and record total time.",
+      "intensity_score": 2.08,
+      "type": "G",
+      "level": 0.5
+    },
+    {
+      "id": "wod_099",
+      "description": "AMRAP 20 minutes: 2 rope climbs; 10 handstand push-ups; 20 walking lunges. Score total rounds and reps.",
+      "intensity_score": 1.51,
+      "type": "G",
+      "level": 0.49
+    },
+    {
+      "id": "wod_100",
+      "description": "For time, complete the chipper: 8 deadlifts (135 lb); 11 back squats (275 lb); 19 front squats (115 lb); 38 walking lunges; 14 power snatches (75 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.76
+    },
+    {
+      "id": "wod_101",
+      "description": "AMRAP 15 minutes: 10 back squats (135 lb); 2 clean and jerks (155 lb); 7 deadlifts (315 lb). Score total rounds and reps.",
+      "intensity_score": 1.48,
+      "type": "W",
+      "level": 0.54
+    },
+    {
+      "id": "wod_102",
+      "description": "3 rounds for time: 7 deadlifts (275 lb); 12 box jumps; 20 Double-unders. Record completion time.",
+      "intensity_score": 1.37,
+      "type": "W",
+      "level": 0.37
+    },
+    {
+      "id": "wod_103",
+      "description": "AMRAP 18 minutes: 25 wall-ball shots (10 lb); 3 handstand push-ups; 10 deadlifts (135 lb). Score total rounds and reps.",
+      "intensity_score": 1.9,
+      "type": "W",
+      "level": 0.5
+    },
+    {
+      "id": "wod_104",
+      "description": "4 rounds for time: 12 power cleans (135 lb); 9 thrusters (75 lb). Record completion time.",
+      "intensity_score": 1.75,
+      "type": "W",
+      "level": 0.49
+    },
+    {
+      "id": "wod_105",
+      "description": "10 intervals, rest 30 seconds after each interval: 6 power snatches (65 lb); 6 kettlebell swings (70 lb). Keep efforts repeatable.",
+      "intensity_score": 1.97,
+      "type": "W",
+      "level": 0.52
+    },
+    {
+      "id": "wod_106",
+      "description": "AMRAP 10 minutes: Shuttle run 300 m; 10 kettlebell swings (18 lb); Row 1000 m. Score total rounds and reps.",
+      "intensity_score": 1.05,
+      "type": "C",
+      "level": 0.24
+    },
+    {
+      "id": "wod_107",
+      "description": "6 rounds for time: 1 rope climbs; 1 muscle-ups. Record completion time.",
+      "intensity_score": 1.03,
+      "type": "G",
+      "level": 0.52
+    },
+    {
+      "id": "wod_108",
+      "description": "8 rounds for time: 3 thrusters (135 lb); 30 air squats; 40 sit-ups. Record completion time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.73
+    },
+    {
+      "id": "wod_109",
+      "description": "8 rounds for time: 12 thrusters (135 lb); 20 kettlebell swings (26 lb). Record completion time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.74
+    },
+    {
+      "id": "wod_110",
+      "description": "AMRAP 12 minutes: 12 back squats (185 lb); 15 wall-ball shots (14 lb). Score total rounds and reps.",
+      "intensity_score": 1.64,
+      "type": "W",
+      "level": 0.39
+    },
+    {
+      "id": "wod_111",
+      "description": "EMOM 15 minutes: rotate through 3 push-ups; Ski erg 100 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.68,
+      "type": "G",
+      "level": 0.11
+    },
+    {
+      "id": "wod_112",
+      "description": "EMOM 20 minutes: rotate through 16 walking lunges. Use the remaining time each minute as rest.",
+      "intensity_score": 1.77,
+      "type": "G",
+      "level": 0.24
+    },
+    {
+      "id": "wod_113",
+      "description": "For time, complete the chipper: 19 burpees; 32 Double-unders; 5 rope climbs; 16 handstand push-ups; 16 deadlifts (135 lb); 19 back squats (95 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "G",
+      "level": 0.72
+    },
+    {
+      "id": "wod_114",
+      "description": "6 rounds for time: 3 back squats (185 lb); 20 wall-ball shots (20 lb). Record completion time.",
+      "intensity_score": 2.47,
+      "type": "W",
+      "level": 0.5
+    },
+    {
+      "id": "wod_115",
+      "description": "4 intervals, rest 90 seconds after each interval: Shuttle run 200 m; Row 400 m. Keep efforts repeatable.",
+      "intensity_score": 0.79,
+      "type": "C",
+      "level": 0.12
+    },
+    {
+      "id": "wod_116",
+      "description": "7 rounds for time: 9 power snatches (65 lb); 12 front squats (115 lb); 5 power cleans (95 lb). Record completion time.",
+      "intensity_score": 2.05,
+      "type": "W",
+      "level": 0.53
+    },
+    {
+      "id": "wod_117",
+      "description": "AMRAP 20 minutes: Bike 25 cal; Shuttle run 400 m; 50 Double-unders. Score total rounds and reps.",
+      "intensity_score": 2.27,
+      "type": "C",
+      "level": 0.42
+    },
+    {
+      "id": "wod_118",
+      "description": "For time, complete the chipper: 16 pull-ups; Shuttle run 650 m; 32 dumbbell snatches (70 lb); 5 toes-to-bars; 3 handstand push-ups; 32 walking lunges. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "G",
+      "level": 0.73
+    },
+    {
+      "id": "wod_119",
+      "description": "4 rounds for time: 15 kettlebell swings (53 lb); 15 thrusters (75 lb); 24 walking lunges. Record completion time.",
+      "intensity_score": 2.07,
+      "type": "W",
+      "level": 0.5
+    },
+    {
+      "id": "wod_120",
+      "description": "4 intervals, rest 90 seconds after each interval: Run 300 m. Keep efforts repeatable.",
+      "intensity_score": 0.77,
+      "type": "C",
+      "level": 0.1
+    },
+    {
+      "id": "wod_121",
+      "description": "AMRAP 15 minutes: Row 150 m; Shuttle run 150 m. Score total rounds and reps.",
+      "intensity_score": 0.66,
+      "type": "C",
+      "level": 0.1
+    },
+    {
+      "id": "wod_122",
+      "description": "10 intervals, rest 90 seconds after each interval: 10 push-ups; 2 rope climbs. Keep efforts repeatable.",
+      "intensity_score": 1.47,
+      "type": "G",
+      "level": 0.48
+    },
+    {
+      "id": "wod_123",
+      "description": "4 rounds for time: 12 power cleans (65 lb); 15 thrusters (115 lb). Record completion time.",
+      "intensity_score": 1.99,
+      "type": "W",
+      "level": 0.53
+    },
+    {
+      "id": "wod_124",
+      "description": "10 intervals, rest 30 seconds after each interval: 6 pull-ups; 6 power snatches (115 lb); 26 air squats. Keep efforts repeatable.",
+      "intensity_score": 2.37,
+      "type": "G",
+      "level": 0.63
+    },
+    {
+      "id": "wod_125",
+      "description": "4 rounds for time: 3 clean and jerks (135 lb); 7 power snatches (115 lb). Record completion time.",
+      "intensity_score": 1.41,
+      "type": "W",
+      "level": 0.51
+    },
+    {
+      "id": "wod_126",
+      "description": "AMRAP 18 minutes: 8 burpees; 20 push-ups; Shuttle run 100 m. Score total rounds and reps.",
+      "intensity_score": 1.15,
+      "type": "G",
+      "level": 0.21
+    },
+    {
+      "id": "wod_127",
+      "description": "For time, complete the chipper: Row 250 m; 11 handstand push-ups; Bike 40 cal; Shuttle run 500 m; 8 pull-ups. Partition as needed and record total time.",
+      "intensity_score": 2.37,
+      "type": "C",
+      "level": 0.58
+    },
+    {
+      "id": "wod_128",
+      "description": "8 rounds for time: 25 wall-ball shots (20 lb); 2 clean and jerks (135 lb). Record completion time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.8
+    },
+    {
+      "id": "wod_129",
+      "description": "5 rounds for time: 10 push presses (135 lb); Bike 8 cal; 3 power snatches (95 lb). Record completion time.",
+      "intensity_score": 1.57,
+      "type": "W",
+      "level": 0.5
+    },
+    {
+      "id": "wod_130",
+      "description": "EMOM 10 minutes: rotate through 16 air squats; Ski erg 200 m; 1 handstand push-ups. Use the remaining time each minute as rest.",
+      "intensity_score": 1.1,
+      "type": "G",
+      "level": 0.41
+    },
+    {
+      "id": "wod_131",
+      "description": "EMOM 20 minutes: rotate through 3 toes-to-bars; Bike 4 cal; 7 back squats (225 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.24,
+      "type": "G",
+      "level": 0.37
+    },
+    {
+      "id": "wod_132",
+      "description": "3 rounds for time: 20 air squats; Run 200 m; 12 push-ups. Record completion time.",
+      "intensity_score": 0.99,
+      "type": "G",
+      "level": 0.15
+    },
+    {
+      "id": "wod_133",
+      "description": "EMOM 10 minutes: rotate through 6 handstand push-ups; 7 box jumps; 7 front squats (135 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.14,
+      "type": "G",
+      "level": 0.41
+    },
+    {
+      "id": "wod_134",
+      "description": "AMRAP 8 minutes: Shuttle run 200 m; Ski erg 400 m; 40 Double-unders. Score total rounds and reps.",
+      "intensity_score": 1.06,
+      "type": "C",
+      "level": 0.26
+    },
+    {
+      "id": "wod_135",
+      "description": "AMRAP 18 minutes: 40 sit-ups; Run 300 m; 10 handstand push-ups. Score total rounds and reps.",
+      "intensity_score": 1.89,
+      "type": "G",
+      "level": 0.51
+    },
+    {
+      "id": "wod_136",
+      "description": "7 rounds for time: 6 push-ups; 5 thrusters (65 lb); 3 handstand push-ups. Record completion time.",
+      "intensity_score": 1.29,
+      "type": "G",
+      "level": 0.43
+    },
+    {
+      "id": "wod_137",
+      "description": "8 intervals, rest 90 seconds after each interval: 22 Double-unders. Keep efforts repeatable.",
+      "intensity_score": 2.44,
+      "type": "C",
+      "level": 0.44
+    },
+    {
+      "id": "wod_138",
+      "description": "7 rounds for time: 10 kettlebell swings (26 lb); 5 power cleans (185 lb); Bike 30 cal. Record completion time.",
+      "intensity_score": 2.31,
+      "type": "W",
+      "level": 0.6
+    },
+    {
+      "id": "wod_139",
+      "description": "For time, complete the chipper: 19 deadlifts (95 lb); Run 300 m; 24 push presses (75 lb); 19 front squats (65 lb); 14 power cleans (135 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.73
+    },
+    {
+      "id": "wod_140",
+      "description": "4 intervals, rest 30 seconds after each interval: 6 walking lunges; 32 Double-unders. Keep efforts repeatable.",
+      "intensity_score": 1.44,
+      "type": "G",
+      "level": 0.3
+    },
+    {
+      "id": "wod_141",
+      "description": "6 intervals, rest 90 seconds after each interval: 2 handstand push-ups; 8 wall-ball shots (10 lb); 8 walking lunges. Keep efforts repeatable.",
+      "intensity_score": 1.27,
+      "type": "G",
+      "level": 0.43
+    },
+    {
+      "id": "wod_142",
+      "description": "EMOM 10 minutes: rotate through Bike 14 cal; 1 rope climbs. Use the remaining time each minute as rest.",
+      "intensity_score": 1.04,
+      "type": "C",
+      "level": 0.43
+    },
+    {
+      "id": "wod_143",
+      "description": "8 intervals, rest 60 seconds after each interval: 10 dumbbell snatches (70 lb); 2 clean and jerks (155 lb); Bike 16 cal. Keep efforts repeatable.",
+      "intensity_score": 1.98,
+      "type": "W",
+      "level": 0.6
+    },
+    {
+      "id": "wod_144",
+      "description": "7 rounds for time: 20 box jumps; 7 front squats (95 lb); Shuttle run 300 m. Record completion time.",
+      "intensity_score": 1.82,
+      "type": "G",
+      "level": 0.41
+    },
+    {
+      "id": "wod_145",
+      "description": "7 rounds for time: 5 front squats (135 lb); 12 thrusters (75 lb); 8 dumbbell snatches (35 lb). Record completion time.",
+      "intensity_score": 1.99,
+      "type": "W",
+      "level": 0.49
+    },
+    {
+      "id": "wod_146",
+      "description": "AMRAP 12 minutes: Ski erg 500 m; Row 400 m. Score total rounds and reps.",
+      "intensity_score": 0.9,
+      "type": "C",
+      "level": 0.13
+    },
+    {
+      "id": "wod_147",
+      "description": "For time, complete the chipper: 40 air squats; 8 power snatches (65 lb); 14 power cleans (185 lb); 5 pull-ups; 2 muscle-ups; 32 walking lunges. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "G",
+      "level": 0.83
+    },
+    {
+      "id": "wod_148",
+      "description": "AMRAP 10 minutes: Shuttle run 400 m; 10 push-ups; 2 rope climbs. Score total rounds and reps.",
+      "intensity_score": 1.03,
+      "type": "C",
+      "level": 0.43
+    },
+    {
+      "id": "wod_149",
+      "description": "EMOM 15 minutes: rotate through 14 sit-ups; 1 muscle-ups; 1 rope climbs. Use the remaining time each minute as rest.",
+      "intensity_score": 1.27,
+      "type": "G",
+      "level": 0.55
+    },
+    {
+      "id": "wod_150",
+      "description": "EMOM 20 minutes: rotate through 6 box jumps. Use the remaining time each minute as rest.",
+      "intensity_score": 1.05,
+      "type": "G",
+      "level": 0.2
+    },
+    {
+      "id": "wod_151",
+      "description": "EMOM 10 minutes: rotate through 2 thrusters (95 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.0,
+      "type": "W",
+      "level": 0.38
+    },
+    {
+      "id": "wod_152",
+      "description": "For time, complete the chipper: 19 air squats; 16 dumbbell snatches (25 lb); 5 muscle-ups; 16 handstand push-ups. Partition as needed and record total time.",
+      "intensity_score": 2.62,
+      "type": "G",
+      "level": 0.73
+    },
+    {
+      "id": "wod_153",
+      "description": "AMRAP 24 minutes: 2 handstand push-ups; Run 800 m. Score total rounds and reps.",
+      "intensity_score": 1.64,
+      "type": "G",
+      "level": 0.48
+    },
+    {
+      "id": "wod_154",
+      "description": "AMRAP 18 minutes: 12 power snatches (65 lb); 20 kettlebell swings (18 lb). Score total rounds and reps.",
+      "intensity_score": 2.08,
+      "type": "W",
+      "level": 0.53
+    },
+    {
+      "id": "wod_155",
+      "description": "For time, complete the chipper: 8 pull-ups; 3 muscle-ups; Shuttle run 150 m; Ski erg 250 m. Partition as needed and record total time.",
+      "intensity_score": 1.52,
+      "type": "G",
+      "level": 0.59
+    },
+    {
+      "id": "wod_156",
+      "description": "7 rounds for time: 15 box jumps; 2 muscle-ups; Shuttle run 300 m. Record completion time.",
+      "intensity_score": 1.67,
+      "type": "G",
+      "level": 0.61
+    },
+    {
+      "id": "wod_157",
+      "description": "8 rounds for time: 3 toes-to-bars; 12 box jumps. Record completion time.",
+      "intensity_score": 1.48,
+      "type": "G",
+      "level": 0.39
+    },
+    {
+      "id": "wod_158",
+      "description": "6 rounds for time: 5 push presses (95 lb); 7 deadlifts (185 lb). Record completion time.",
+      "intensity_score": 1.55,
+      "type": "W",
+      "level": 0.41
+    },
+    {
+      "id": "wod_159",
+      "description": "For time, complete the chipper: 24 thrusters (65 lb); 5 deadlifts (315 lb); 40 wall-ball shots (10 lb); 8 power snatches (135 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.88
+    },
+    {
+      "id": "wod_160",
+      "description": "EMOM 10 minutes: rotate through Ski erg 100 m; Shuttle run 150 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.6,
+      "type": "C",
+      "level": 0.1
+    },
+    {
+      "id": "wod_161",
+      "description": "4 intervals, rest 45 seconds after each interval: 6 deadlifts (315 lb); 6 front squats (95 lb); 4 push-ups. Keep efforts repeatable.",
+      "intensity_score": 1.17,
+      "type": "W",
+      "level": 0.37
+    },
+    {
+      "id": "wod_162",
+      "description": "4 rounds for time: Ski erg 400 m; 24 walking lunges. Record completion time.",
+      "intensity_score": 1.33,
+      "type": "C",
+      "level": 0.19
+    },
+    {
+      "id": "wod_163",
+      "description": "EMOM 18 minutes: rotate through Row 100 m; Shuttle run 150 m; 2 deadlifts (95 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 0.82,
+      "type": "C",
+      "level": 0.24
+    },
+    {
+      "id": "wod_164",
+      "description": "5 rounds for time: 10 push-ups; 5 handstand push-ups. Record completion time.",
+      "intensity_score": 1.28,
+      "type": "G",
+      "level": 0.43
+    },
+    {
+      "id": "wod_165",
+      "description": "EMOM 15 minutes: rotate through 3 burpees; Bike 4 cal; 2 muscle-ups. Use the remaining time each minute as rest.",
+      "intensity_score": 1.11,
+      "type": "G",
+      "level": 0.53
+    },
+    {
+      "id": "wod_166",
+      "description": "5 intervals, rest 90 seconds after each interval: Ski erg 300 m; Run 600 m; 11 burpees. Keep efforts repeatable.",
+      "intensity_score": 1.12,
+      "type": "C",
+      "level": 0.22
+    },
+    {
+      "id": "wod_167",
+      "description": "EMOM 15 minutes: rotate through 6 box jumps; Ski erg 100 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.82,
+      "type": "G",
+      "level": 0.17
+    },
+    {
+      "id": "wod_168",
+      "description": "For time, complete the chipper: Row 400 m; 19 back squats (155 lb); 24 burpees; Shuttle run 150 m. Partition as needed and record total time.",
+      "intensity_score": 2.5,
+      "type": "C",
+      "level": 0.5
+    },
+    {
+      "id": "wod_169",
+      "description": "For time, complete the chipper: Run 500 m; 19 pull-ups; Bike 24 cal; Row 1200 m; 32 Double-unders. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 0.55
+    },
+    {
+      "id": "wod_170",
+      "description": "For time, complete the chipper: 13 push-ups; 3 rope climbs; 16 kettlebell swings (70 lb); 11 handstand push-ups. Partition as needed and record total time.",
+      "intensity_score": 2.44,
+      "type": "G",
+      "level": 0.61
+    },
+    {
+      "id": "wod_171",
+      "description": "6 intervals, rest 90 seconds after each interval: 10 burpees; 5 handstand push-ups. Keep efforts repeatable.",
+      "intensity_score": 1.28,
+      "type": "G",
+      "level": 0.43
+    },
+    {
+      "id": "wod_172",
+      "description": "7 rounds for time: 12 sit-ups; 2 muscle-ups; 10 pull-ups. Record completion time.",
+      "intensity_score": 1.65,
+      "type": "G",
+      "level": 0.6
+    },
+    {
+      "id": "wod_173",
+      "description": "4 intervals, rest 60 seconds after each interval: 6 handstand push-ups; 8 pull-ups. Keep efforts repeatable.",
+      "intensity_score": 1.1,
+      "type": "G",
+      "level": 0.41
+    },
+    {
+      "id": "wod_174",
+      "description": "AMRAP 12 minutes: Row 500 m; 15 wall-ball shots (14 lb); 7 thrusters (75 lb). Score total rounds and reps.",
+      "intensity_score": 1.35,
+      "type": "C",
+      "level": 0.42
+    },
+    {
+      "id": "wod_175",
+      "description": "For time, complete the chipper: 8 clean and jerks (65 lb); Row 650 m; 5 back squats (225 lb); 11 deadlifts (135 lb). Partition as needed and record total time.",
+      "intensity_score": 2.29,
+      "type": "W",
+      "level": 0.57
+    },
+    {
+      "id": "wod_176",
+      "description": "AMRAP 20 minutes: 2 rope climbs; 7 handstand push-ups. Score total rounds and reps.",
+      "intensity_score": 1.12,
+      "type": "G",
+      "level": 0.44
+    },
+    {
+      "id": "wod_177",
+      "description": "AMRAP 24 minutes: 20 kettlebell swings (18 lb); 3 clean and jerks (155 lb); 3 deadlifts (185 lb). Score total rounds and reps.",
+      "intensity_score": 1.86,
+      "type": "W",
+      "level": 0.58
+    },
+    {
+      "id": "wod_178",
+      "description": "For time, complete the chipper: 3 muscle-ups; 48 walking lunges; 32 box jumps; 11 toes-to-bars; 19 burpees. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "G",
+      "level": 0.85
+    },
+    {
+      "id": "wod_179",
+      "description": "For time, complete the chipper: Bike 13 cal; Ski erg 800 m; 19 toes-to-bars; Row 1600 m; Shuttle run 650 m; 19 push-ups. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 0.62
+    },
+    {
+      "id": "wod_180",
+      "description": "AMRAP 10 minutes: 2 clean and jerks (155 lb); 15 kettlebell swings (18 lb); 12 deadlifts (95 lb). Score total rounds and reps.",
+      "intensity_score": 1.37,
+      "type": "W",
+      "level": 0.52
+    },
+    {
+      "id": "wod_181",
+      "description": "3 rounds for time: 3 handstand push-ups; 5 back squats (95 lb); 15 push-ups. Record completion time.",
+      "intensity_score": 1.12,
+      "type": "G",
+      "level": 0.41
+    },
+    {
+      "id": "wod_182",
+      "description": "EMOM 20 minutes: rotate through 4 thrusters (45 lb); 8 wall-ball shots (14 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.54,
+      "type": "W",
+      "level": 0.4
+    },
+    {
+      "id": "wod_183",
+      "description": "8 rounds for time: 12 power snatches (75 lb); 10 front squats (185 lb). Record completion time.",
+      "intensity_score": 2.82,
+      "type": "W",
+      "level": 0.64
+    },
+    {
+      "id": "wod_184",
+      "description": "EMOM 12 minutes: rotate through Shuttle run 100 m; 4 pull-ups. Use the remaining time each minute as rest.",
+      "intensity_score": 0.77,
+      "type": "C",
+      "level": 0.24
+    },
+    {
+      "id": "wod_185",
+      "description": "AMRAP 10 minutes: 25 wall-ball shots (14 lb); 15 push-ups; 10 kettlebell swings (26 lb). Score total rounds and reps.",
+      "intensity_score": 1.48,
+      "type": "W",
+      "level": 0.33
+    },
+    {
+      "id": "wod_186",
+      "description": "4 intervals, rest 90 seconds after each interval: 6 deadlifts (315 lb); Shuttle run 150 m. Keep efforts repeatable.",
+      "intensity_score": 1.14,
+      "type": "W",
+      "level": 0.36
+    },
+    {
+      "id": "wod_187",
+      "description": "4 rounds for time: 10 push-ups; 10 toes-to-bars. Record completion time.",
+      "intensity_score": 1.23,
+      "type": "G",
+      "level": 0.35
+    },
+    {
+      "id": "wod_188",
+      "description": "AMRAP 20 minutes: 10 burpees; 10 handstand push-ups. Score total rounds and reps.",
+      "intensity_score": 1.44,
+      "type": "G",
+      "level": 0.45
+    },
+    {
+      "id": "wod_189",
+      "description": "3 rounds for time: 5 handstand push-ups; 9 power snatches (135 lb). Record completion time.",
+      "intensity_score": 1.33,
+      "type": "G",
+      "level": 0.51
+    },
+    {
+      "id": "wod_190",
+      "description": "7 rounds for time: 15 kettlebell swings (53 lb); 5 deadlifts (135 lb). Record completion time.",
+      "intensity_score": 2.22,
+      "type": "W",
+      "level": 0.45
+    },
+    {
+      "id": "wod_191",
+      "description": "8 rounds for time: 3 deadlifts (225 lb); 30 air squats. Record completion time.",
+      "intensity_score": 2.53,
+      "type": "W",
+      "level": 0.5
+    },
+    {
+      "id": "wod_192",
+      "description": "3 rounds for time: 20 kettlebell swings (53 lb); 3 back squats (225 lb); 25 wall-ball shots (10 lb). Record completion time.",
+      "intensity_score": 1.78,
+      "type": "W",
+      "level": 0.43
+    },
+    {
+      "id": "wod_193",
+      "description": "7 rounds for time: 10 pull-ups; Ski erg 500 m. Record completion time.",
+      "intensity_score": 1.64,
+      "type": "G",
+      "level": 0.34
+    },
+    {
+      "id": "wod_194",
+      "description": "AMRAP 18 minutes: 10 push-ups; 8 burpees. Score total rounds and reps.",
+      "intensity_score": 1.09,
+      "type": "G",
+      "level": 0.21
+    },
+    {
+      "id": "wod_195",
+      "description": "7 rounds for time: 3 front squats (95 lb); 12 back squats (225 lb); 12 kettlebell swings (26 lb). Record completion time.",
+      "intensity_score": 2.05,
+      "type": "W",
+      "level": 0.47
+    },
+    {
+      "id": "wod_196",
+      "description": "4 rounds for time: Run 400 m; Shuttle run 300 m; Row 1000 m. Record completion time.",
+      "intensity_score": 1.19,
+      "type": "C",
+      "level": 0.17
+    },
+    {
+      "id": "wod_197",
+      "description": "3 rounds for time: 20 box jumps; 3 toes-to-bars. Record completion time.",
+      "intensity_score": 1.16,
+      "type": "G",
+      "level": 0.35
+    },
+    {
+      "id": "wod_198",
+      "description": "AMRAP 15 minutes: Row 400 m; 12 front squats (115 lb). Score total rounds and reps.",
+      "intensity_score": 1.37,
+      "type": "C",
+      "level": 0.37
+    },
+    {
+      "id": "wod_199",
+      "description": "EMOM 20 minutes: rotate through 4 handstand push-ups. Use the remaining time each minute as rest.",
+      "intensity_score": 1.12,
+      "type": "G",
+      "level": 0.41
+    },
+    {
+      "id": "wod_200",
+      "description": "3 rounds for time: 25 wall-ball shots (14 lb); Bike 30 cal; 5 deadlifts (185 lb). Record completion time.",
+      "intensity_score": 1.69,
+      "type": "W",
+      "level": 0.38
+    },
+    {
+      "id": "wod_201",
+      "description": "AMRAP 15 minutes: 25 wall-ball shots (14 lb); 16 dumbbell snatches (70 lb). Score total rounds and reps.",
+      "intensity_score": 2.58,
+      "type": "W",
+      "level": 0.56
+    },
+    {
+      "id": "wod_202",
+      "description": "5 rounds for time: 7 pull-ups; 8 burpees. Record completion time.",
+      "intensity_score": 1.12,
+      "type": "G",
+      "level": 0.28
+    },
+    {
+      "id": "wod_203",
+      "description": "EMOM 20 minutes: rotate through 6 pull-ups. Use the remaining time each minute as rest.",
+      "intensity_score": 1.12,
+      "type": "G",
+      "level": 0.28
+    },
+    {
+      "id": "wod_204",
+      "description": "AMRAP 12 minutes: 15 thrusters (65 lb); 3 power cleans (135 lb); 9 power snatches (65 lb). Score total rounds and reps.",
+      "intensity_score": 1.39,
+      "type": "W",
+      "level": 0.44
+    },
+    {
+      "id": "wod_205",
+      "description": "EMOM 15 minutes: rotate through Shuttle run 150 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.72,
+      "type": "C",
+      "level": 0.11
+    },
+    {
+      "id": "wod_206",
+      "description": "AMRAP 12 minutes: 8 dumbbell snatches (35 lb); 7 power snatches (45 lb); 5 clean and jerks (65 lb). Score total rounds and reps.",
+      "intensity_score": 1.25,
+      "type": "W",
+      "level": 0.44
+    },
+    {
+      "id": "wod_207",
+      "description": "EMOM 20 minutes: rotate through 11 wall-ball shots (20 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 2.5,
+      "type": "W",
+      "level": 0.5
+    },
+    {
+      "id": "wod_208",
+      "description": "EMOM 15 minutes: rotate through 4 back squats (225 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.23,
+      "type": "W",
+      "level": 0.36
+    },
+    {
+      "id": "wod_209",
+      "description": "EMOM 15 minutes: rotate through 4 pull-ups; 2 handstand push-ups; 8 burpees. Use the remaining time each minute as rest.",
+      "intensity_score": 1.08,
+      "type": "G",
+      "level": 0.41
+    },
+    {
+      "id": "wod_210",
+      "description": "AMRAP 20 minutes: 20 kettlebell swings (18 lb); 5 pull-ups; 20 sit-ups. Score total rounds and reps.",
+      "intensity_score": 1.76,
+      "type": "W",
+      "level": 0.35
+    },
+    {
+      "id": "wod_211",
+      "description": "5 rounds for time: 2 rope climbs; Ski erg 150 m. Record completion time.",
+      "intensity_score": 1.02,
+      "type": "G",
+      "level": 0.43
+    },
+    {
+      "id": "wod_212",
+      "description": "7 rounds for time: Ski erg 750 m; 7 back squats (155 lb); 5 thrusters (65 lb). Record completion time.",
+      "intensity_score": 1.81,
+      "type": "C",
+      "level": 0.47
+    },
+    {
+      "id": "wod_213",
+      "description": "4 rounds for time: 20 box jumps; 12 sit-ups; Run 600 m. Record completion time.",
+      "intensity_score": 1.36,
+      "type": "G",
+      "level": 0.24
+    },
+    {
+      "id": "wod_214",
+      "description": "For time, complete the chipper: 11 deadlifts (275 lb); 8 power snatches (95 lb); 16 kettlebell swings (26 lb); 8 power cleans (135 lb). Partition as needed and record total time.",
+      "intensity_score": 2.8,
+      "type": "W",
+      "level": 0.65
+    },
+    {
+      "id": "wod_215",
+      "description": "5 rounds for time: 7 push presses (115 lb); 10 front squats (185 lb). Record completion time.",
+      "intensity_score": 1.87,
+      "type": "W",
+      "level": 0.47
+    },
+    {
+      "id": "wod_216",
+      "description": "EMOM 10 minutes: rotate through 16 Double-unders. Use the remaining time each minute as rest.",
+      "intensity_score": 1.23,
+      "type": "C",
+      "level": 0.28
+    },
+    {
+      "id": "wod_217",
+      "description": "3 rounds for time: 2 rope climbs; 10 push-ups; 15 air squats. Record completion time.",
+      "intensity_score": 1.18,
+      "type": "G",
+      "level": 0.45
+    },
+    {
+      "id": "wod_218",
+      "description": "5 rounds for time: 5 muscle-ups; 2 rope climbs. Record completion time.",
+      "intensity_score": 1.17,
+      "type": "G",
+      "level": 0.54
+    },
+    {
+      "id": "wod_219",
+      "description": "7 rounds for time: Shuttle run 150 m; 25 air squats; 10 kettlebell swings (26 lb). Record completion time.",
+      "intensity_score": 1.84,
+      "type": "C",
+      "level": 0.36
+    },
+    {
+      "id": "wod_220",
+      "description": "6 rounds for time: 5 clean and jerks (65 lb); 3 power cleans (95 lb). Record completion time.",
+      "intensity_score": 1.32,
+      "type": "W",
+      "level": 0.45
+    },
+    {
+      "id": "wod_221",
+      "description": "EMOM 20 minutes: rotate through 2 clean and jerks (185 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.31,
+      "type": "W",
+      "level": 0.54
+    },
+    {
+      "id": "wod_222",
+      "description": "5 intervals, rest 120 seconds after each interval: 5 back squats (185 lb); 6 front squats (135 lb); 8 wall-ball shots (20 lb). Keep efforts repeatable.",
+      "intensity_score": 1.4,
+      "type": "W",
+      "level": 0.38
+    },
+    {
+      "id": "wod_223",
+      "description": "AMRAP 18 minutes: 8 push-ups; 15 sit-ups; Run 400 m. Score total rounds and reps.",
+      "intensity_score": 1.15,
+      "type": "G",
+      "level": 0.17
+    },
+    {
+      "id": "wod_224",
+      "description": "EMOM 15 minutes: rotate through 6 walking lunges. Use the remaining time each minute as rest.",
+      "intensity_score": 0.87,
+      "type": "G",
+      "level": 0.12
+    },
+    {
+      "id": "wod_225",
+      "description": "6 rounds for time: Run 200 m; Shuttle run 300 m. Record completion time.",
+      "intensity_score": 0.95,
+      "type": "C",
+      "level": 0.14
+    },
+    {
+      "id": "wod_226",
+      "description": "AMRAP 20 minutes: 6 push-ups; 15 air squats. Score total rounds and reps.",
+      "intensity_score": 1.19,
+      "type": "G",
+      "level": 0.18
+    },
+    {
+      "id": "wod_227",
+      "description": "5 rounds for time: Ski erg 750 m; 3 toes-to-bars. Record completion time.",
+      "intensity_score": 1.37,
+      "type": "C",
+      "level": 0.38
+    },
+    {
+      "id": "wod_228",
+      "description": "AMRAP 12 minutes: Bike 30 cal; Ski erg 250 m; Shuttle run 400 m. Score total rounds and reps.",
+      "intensity_score": 0.98,
+      "type": "C",
+      "level": 0.14
+    },
+    {
+      "id": "wod_229",
+      "description": "AMRAP 20 minutes: 2 rope climbs; Ski erg 150 m. Score total rounds and reps.",
+      "intensity_score": 1.02,
+      "type": "G",
+      "level": 0.43
+    },
+    {
+      "id": "wod_230",
+      "description": "4 intervals, rest 45 seconds after each interval: 20 walking lunges; 6 pull-ups; 3 handstand push-ups. Keep efforts repeatable.",
+      "intensity_score": 1.21,
+      "type": "G",
+      "level": 0.42
+    },
+    {
+      "id": "wod_231",
+      "description": "6 rounds for time: 5 back squats (155 lb); Row 400 m; 7 push presses (75 lb). Record completion time.",
+      "intensity_score": 1.51,
+      "type": "W",
+      "level": 0.38
+    },
+    {
+      "id": "wod_232",
+      "description": "AMRAP 24 minutes: 15 sit-ups; Bike 25 cal; 1 rope climbs. Score total rounds and reps.",
+      "intensity_score": 1.74,
+      "type": "G",
+      "level": 0.52
+    },
+    {
+      "id": "wod_233",
+      "description": "5 rounds for time: 3 pull-ups; Bike 10 cal; 12 walking lunges. Record completion time.",
+      "intensity_score": 1.14,
+      "type": "G",
+      "level": 0.28
+    },
+    {
+      "id": "wod_234",
+      "description": "3 rounds for time: Shuttle run 100 m; 5 toes-to-bars. Record completion time.",
+      "intensity_score": 0.83,
+      "type": "C",
+      "level": 0.31
+    },
+    {
+      "id": "wod_235",
+      "description": "5 rounds for time: Row 250 m; 12 toes-to-bars. Record completion time.",
+      "intensity_score": 1.26,
+      "type": "C",
+      "level": 0.36
+    },
+    {
+      "id": "wod_236",
+      "description": "5 rounds for time: 10 push-ups; 25 air squats; 10 dumbbell snatches (50 lb). Record completion time.",
+      "intensity_score": 1.82,
+      "type": "G",
+      "level": 0.43
+    },
+    {
+      "id": "wod_237",
+      "description": "AMRAP 18 minutes: 20 wall-ball shots (20 lb); 50 Double-unders; 15 box jumps. Score total rounds and reps.",
+      "intensity_score": 2.75,
+      "type": "W",
+      "level": 0.54
+    },
+    {
+      "id": "wod_238",
+      "description": "AMRAP 20 minutes: 20 air squats; 24 walking lunges. Score total rounds and reps.",
+      "intensity_score": 1.89,
+      "type": "G",
+      "level": 0.26
+    },
+    {
+      "id": "wod_239",
+      "description": "4 rounds for time: 7 back squats (185 lb); 8 push-ups. Record completion time.",
+      "intensity_score": 1.28,
+      "type": "W",
+      "level": 0.35
+    },
+    {
+      "id": "wod_240",
+      "description": "6 rounds for time: 12 front squats (155 lb); 12 sit-ups. Record completion time.",
+      "intensity_score": 2.09,
+      "type": "W",
+      "level": 0.48
+    },
+    {
+      "id": "wod_241",
+      "description": "5 rounds for time: 30 sit-ups; 10 front squats (185 lb). Record completion time.",
+      "intensity_score": 2.34,
+      "type": "G",
+      "level": 0.54
+    },
+    {
+      "id": "wod_242",
+      "description": "6 rounds for time: 2 muscle-ups; 10 walking lunges. Record completion time.",
+      "intensity_score": 1.4,
+      "type": "G",
+      "level": 0.57
+    },
+    {
+      "id": "wod_243",
+      "description": "AMRAP 8 minutes: 15 burpees; 10 handstand push-ups; 12 wall-ball shots (20 lb). Score total rounds and reps.",
+      "intensity_score": 1.22,
+      "type": "G",
+      "level": 0.42
+    },
+    {
+      "id": "wod_244",
+      "description": "EMOM 10 minutes: rotate through 7 push presses (95 lb); Ski erg 300 m. Use the remaining time each minute as rest.",
+      "intensity_score": 1.18,
+      "type": "W",
+      "level": 0.36
+    },
+    {
+      "id": "wod_245",
+      "description": "EMOM 10 minutes: rotate through Run 450 m; 14 wall-ball shots (10 lb); Shuttle run 200 m. Use the remaining time each minute as rest.",
+      "intensity_score": 1.09,
+      "type": "C",
+      "level": 0.27
+    },
+    {
+      "id": "wod_246",
+      "description": "8 rounds for time: 15 burpees; Row 400 m; 40 sit-ups. Record completion time.",
+      "intensity_score": 2.75,
+      "type": "G",
+      "level": 0.42
+    },
+    {
+      "id": "wod_247",
+      "description": "4 rounds for time: 7 power snatches (75 lb); Row 400 m; 2 muscle-ups. Record completion time.",
+      "intensity_score": 1.4,
+      "type": "W",
+      "level": 0.56
+    },
+    {
+      "id": "wod_248",
+      "description": "5 rounds for time: 7 front squats (65 lb); Run 800 m; Bike 30 cal. Record completion time.",
+      "intensity_score": 1.85,
+      "type": "W",
+      "level": 0.38
+    },
+    {
+      "id": "wod_249",
+      "description": "AMRAP 24 minutes: 1 rope climbs; 15 air squats; Ski erg 250 m. Score total rounds and reps.",
+      "intensity_score": 1.4,
+      "type": "G",
+      "level": 0.47
+    },
+    {
+      "id": "wod_250",
+      "description": "6 intervals, rest 60 seconds after each interval: 26 air squats; 8 back squats (225 lb). Keep efforts repeatable.",
+      "intensity_score": 2.01,
+      "type": "G",
+      "level": 0.47
+    },
+    {
+      "id": "wod_251",
+      "description": "7 rounds for time: Row 500 m; 20 Double-unders. Record completion time.",
+      "intensity_score": 2.03,
+      "type": "C",
+      "level": 0.39
+    },
+    {
+      "id": "wod_252",
+      "description": "EMOM 10 minutes: rotate through 8 thrusters (75 lb); 2 front squats (155 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.15,
+      "type": "W",
+      "level": 0.38
+    },
+    {
+      "id": "wod_253",
+      "description": "AMRAP 10 minutes: 5 thrusters (135 lb); Bike 20 cal. Score total rounds and reps.",
+      "intensity_score": 1.31,
+      "type": "W",
+      "level": 0.46
+    },
+    {
+      "id": "wod_254",
+      "description": "For time, complete the chipper: 160 Double-unders; Row 250 m; 5 muscle-ups; Run 650 m; Shuttle run 650 m. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 1.0
+    },
+    {
+      "id": "wod_255",
+      "description": "6 intervals, rest 90 seconds after each interval: 8 power cleans (95 lb). Keep efforts repeatable.",
+      "intensity_score": 1.6,
+      "type": "W",
+      "level": 0.44
+    },
+    {
+      "id": "wod_256",
+      "description": "AMRAP 15 minutes: 40 Double-unders; Run 100 m; Bike 30 cal. Score total rounds and reps.",
+      "intensity_score": 1.64,
+      "type": "C",
+      "level": 0.34
+    },
+    {
+      "id": "wod_257",
+      "description": "For time, complete the chipper: 2 rope climbs; 24 sit-ups; 8 deadlifts (95 lb); 19 box jumps. Partition as needed and record total time.",
+      "intensity_score": 2.34,
+      "type": "G",
+      "level": 0.59
+    },
+    {
+      "id": "wod_258",
+      "description": "For time, complete the chipper: 8 handstand push-ups; 5 pull-ups; 2 rope climbs; 10 push-ups; 11 back squats (225 lb). Partition as needed and record total time.",
+      "intensity_score": 1.88,
+      "type": "G",
+      "level": 0.54
+    },
+    {
+      "id": "wod_259",
+      "description": "AMRAP 12 minutes: 12 wall-ball shots (10 lb); 75 Double-unders; Ski erg 750 m. Score total rounds and reps.",
+      "intensity_score": 2.1,
+      "type": "W",
+      "level": 0.39
+    },
+    {
+      "id": "wod_260",
+      "description": "AMRAP 10 minutes: 40 sit-ups; 12 burpees. Score total rounds and reps.",
+      "intensity_score": 1.39,
+      "type": "G",
+      "level": 0.25
+    },
+    {
+      "id": "wod_261",
+      "description": "AMRAP 8 minutes: 10 front squats (65 lb); 10 toes-to-bars. Score total rounds and reps.",
+      "intensity_score": 1.08,
+      "type": "W",
+      "level": 0.33
+    },
+    {
+      "id": "wod_262",
+      "description": "10 intervals, rest 60 seconds after each interval: 5 front squats (65 lb); 2 thrusters (95 lb). Keep efforts repeatable.",
+      "intensity_score": 1.39,
+      "type": "W",
+      "level": 0.43
+    },
+    {
+      "id": "wod_263",
+      "description": "For time, complete the chipper: Shuttle run 500 m; Run 1300 m; Ski erg 650 m; 80 Double-unders; 5 power snatches (115 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 0.88
+    },
+    {
+      "id": "wod_264",
+      "description": "6 intervals, rest 60 seconds after each interval: 5 push-ups; 10 sit-ups; 8 back squats (95 lb). Keep efforts repeatable.",
+      "intensity_score": 1.21,
+      "type": "G",
+      "level": 0.3
+    },
+    {
+      "id": "wod_265",
+      "description": "AMRAP 18 minutes: Run 800 m; 20 Double-unders; 12 deadlifts (275 lb). Score total rounds and reps.",
+      "intensity_score": 1.87,
+      "type": "C",
+      "level": 0.45
+    },
+    {
+      "id": "wod_266",
+      "description": "For time, complete the chipper: 14 thrusters (95 lb); 8 push presses (45 lb); 8 front squats (115 lb); 14 power cleans (185 lb); 24 kettlebell swings (18 lb); 26 dumbbell snatches (70 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.83
+    },
+    {
+      "id": "wod_267",
+      "description": "For time, complete the chipper: 24 burpees; 8 toes-to-bars; 38 walking lunges; Ski erg 400 m. Partition as needed and record total time.",
+      "intensity_score": 2.89,
+      "type": "G",
+      "level": 0.57
+    },
+    {
+      "id": "wod_268",
+      "description": "AMRAP 20 minutes: 12 power snatches (75 lb); 3 front squats (115 lb); 40 sit-ups. Score total rounds and reps.",
+      "intensity_score": 2.21,
+      "type": "W",
+      "level": 0.56
+    },
+    {
+      "id": "wod_269",
+      "description": "3 rounds for time: 16 walking lunges; 10 pull-ups; Shuttle run 400 m. Record completion time.",
+      "intensity_score": 1.11,
+      "type": "G",
+      "level": 0.27
+    },
+    {
+      "id": "wod_270",
+      "description": "AMRAP 20 minutes: Shuttle run 150 m; Run 800 m; Ski erg 750 m. Score total rounds and reps.",
+      "intensity_score": 1.37,
+      "type": "C",
+      "level": 0.19
+    },
+    {
+      "id": "wod_271",
+      "description": "4 rounds for time: 12 toes-to-bars; 6 push-ups. Record completion time.",
+      "intensity_score": 1.18,
+      "type": "G",
+      "level": 0.35
+    },
+    {
+      "id": "wod_272",
+      "description": "AMRAP 8 minutes: Ski erg 750 m; 5 handstand push-ups; 10 walking lunges. Score total rounds and reps.",
+      "intensity_score": 1.05,
+      "type": "C",
+      "level": 0.41
+    },
+    {
+      "id": "wod_273",
+      "description": "4 rounds for time: Shuttle run 200 m; 100 Double-unders. Record completion time.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 0.54
+    },
+    {
+      "id": "wod_274",
+      "description": "8 rounds for time: 5 back squats (275 lb); 9 clean and jerks (185 lb); 50 Double-unders. Record completion time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.83
+    },
+    {
+      "id": "wod_275",
+      "description": "EMOM 10 minutes: rotate through 4 toes-to-bars. Use the remaining time each minute as rest.",
+      "intensity_score": 0.89,
+      "type": "G",
+      "level": 0.31
+    },
+    {
+      "id": "wod_276",
+      "description": "AMRAP 10 minutes: Shuttle run 100 m; 40 Double-unders. Score total rounds and reps.",
+      "intensity_score": 1.27,
+      "type": "C",
+      "level": 0.29
+    },
+    {
+      "id": "wod_277",
+      "description": "AMRAP 24 minutes: Shuttle run 200 m; Run 200 m. Score total rounds and reps.",
+      "intensity_score": 0.85,
+      "type": "C",
+      "level": 0.13
+    },
+    {
+      "id": "wod_278",
+      "description": "AMRAP 20 minutes: Bike 25 cal; 30 sit-ups; Ski erg 400 m. Score total rounds and reps.",
+      "intensity_score": 1.73,
+      "type": "C",
+      "level": 0.24
+    },
+    {
+      "id": "wod_279",
+      "description": "4 rounds for time: 3 deadlifts (275 lb); 12 pull-ups. Record completion time.",
+      "intensity_score": 1.24,
+      "type": "W",
+      "level": 0.36
+    },
+    {
+      "id": "wod_280",
+      "description": "For time, complete the chipper: 16 toes-to-bars; 11 power cleans (135 lb); 13 box jumps; 32 push-ups. Partition as needed and record total time.",
+      "intensity_score": 2.98,
+      "type": "G",
+      "level": 0.66
+    },
+    {
+      "id": "wod_281",
+      "description": "EMOM 24 minutes: rotate through 2 pull-ups; 2 rope climbs; 3 handstand push-ups. Use the remaining time each minute as rest.",
+      "intensity_score": 1.06,
+      "type": "G",
+      "level": 0.43
+    },
+    {
+      "id": "wod_282",
+      "description": "6 rounds for time: 5 muscle-ups; 6 burpees. Record completion time.",
+      "intensity_score": 1.37,
+      "type": "G",
+      "level": 0.57
+    },
+    {
+      "id": "wod_283",
+      "description": "3 rounds for time: Row 750 m; Run 400 m; Shuttle run 300 m. Record completion time.",
+      "intensity_score": 0.93,
+      "type": "C",
+      "level": 0.14
+    },
+    {
+      "id": "wod_284",
+      "description": "AMRAP 12 minutes: 12 push-ups; Ski erg 400 m. Score total rounds and reps.",
+      "intensity_score": 0.94,
+      "type": "G",
+      "level": 0.14
+    },
+    {
+      "id": "wod_285",
+      "description": "EMOM 12 minutes: rotate through Shuttle run 100 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.58,
+      "type": "C",
+      "level": 0.09
+    },
+    {
+      "id": "wod_286",
+      "description": "8 intervals, rest 45 seconds after each interval: 6 box jumps. Keep efforts repeatable.",
+      "intensity_score": 1.08,
+      "type": "G",
+      "level": 0.21
+    },
+    {
+      "id": "wod_287",
+      "description": "6 rounds for time: 3 muscle-ups; 8 box jumps; 25 kettlebell swings (53 lb). Record completion time.",
+      "intensity_score": 2.33,
+      "type": "G",
+      "level": 0.69
+    },
+    {
+      "id": "wod_288",
+      "description": "5 rounds for time: 15 burpees; 5 front squats (65 lb); 7 deadlifts (185 lb). Record completion time.",
+      "intensity_score": 1.38,
+      "type": "G",
+      "level": 0.35
+    },
+    {
+      "id": "wod_289",
+      "description": "AMRAP 8 minutes: 3 clean and jerks (65 lb); 7 back squats (225 lb); 24 walking lunges. Score total rounds and reps.",
+      "intensity_score": 1.23,
+      "type": "W",
+      "level": 0.44
+    },
+    {
+      "id": "wod_290",
+      "description": "AMRAP 24 minutes: Ski erg 400 m; 20 sit-ups; Bike 12 cal. Score total rounds and reps.",
+      "intensity_score": 1.47,
+      "type": "C",
+      "level": 0.21
+    },
+    {
+      "id": "wod_291",
+      "description": "AMRAP 15 minutes: 12 wall-ball shots (20 lb); 8 burpees. Score total rounds and reps.",
+      "intensity_score": 1.53,
+      "type": "W",
+      "level": 0.38
+    },
+    {
+      "id": "wod_292",
+      "description": "6 intervals, rest 120 seconds after each interval: Bike 11 cal. Keep efforts repeatable.",
+      "intensity_score": 1.01,
+      "type": "C",
+      "level": 0.13
+    },
+    {
+      "id": "wod_293",
+      "description": "For time, complete the chipper: 19 deadlifts (275 lb); 19 back squats (275 lb); 8 front squats (115 lb); 8 power snatches (135 lb); 11 push presses (95 lb); 24 box jumps. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.84
+    },
+    {
+      "id": "wod_294",
+      "description": "AMRAP 24 minutes: 9 power snatches (65 lb); 20 wall-ball shots (10 lb). Score total rounds and reps.",
+      "intensity_score": 2.5,
+      "type": "W",
+      "level": 0.59
+    },
+    {
+      "id": "wod_295",
+      "description": "AMRAP 20 minutes: 1 rope climbs; Ski erg 750 m. Score total rounds and reps.",
+      "intensity_score": 1.46,
+      "type": "G",
+      "level": 0.48
+    },
+    {
+      "id": "wod_296",
+      "description": "AMRAP 18 minutes: 15 thrusters (65 lb); 12 walking lunges; 20 Double-unders. Score total rounds and reps.",
+      "intensity_score": 1.84,
+      "type": "W",
+      "level": 0.46
+    },
+    {
+      "id": "wod_297",
+      "description": "5 intervals, rest 120 seconds after each interval: 5 dumbbell snatches (70 lb). Keep efforts repeatable.",
+      "intensity_score": 1.35,
+      "type": "W",
+      "level": 0.4
+    },
+    {
+      "id": "wod_298",
+      "description": "AMRAP 10 minutes: 12 deadlifts (225 lb); 7 clean and jerks (95 lb). Score total rounds and reps.",
+      "intensity_score": 1.41,
+      "type": "W",
+      "level": 0.48
+    },
+    {
+      "id": "wod_299",
+      "description": "EMOM 12 minutes: rotate through 8 wall-ball shots (10 lb); 5 power cleans (155 lb); 3 push presses (45 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.29,
+      "type": "W",
+      "level": 0.45
+    },
+    {
+      "id": "wod_300",
+      "description": "3 rounds for time: Bike 25 cal; Shuttle run 100 m; 30 Double-unders. Record completion time.",
+      "intensity_score": 1.26,
+      "type": "C",
+      "level": 0.29
+    },
+    {
+      "id": "wod_301",
+      "description": "For time, complete the chipper: 5 muscle-ups; 32 box jumps; 19 pull-ups; 19 thrusters (95 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "G",
+      "level": 0.82
+    },
+    {
+      "id": "wod_302",
+      "description": "AMRAP 18 minutes: 12 sit-ups; 12 dumbbell snatches (50 lb); 12 wall-ball shots (14 lb). Score total rounds and reps.",
+      "intensity_score": 1.72,
+      "type": "G",
+      "level": 0.42
+    },
+    {
+      "id": "wod_303",
+      "description": "8 intervals, rest 30 seconds after each interval: Row 300 m; 56 Double-unders; Bike 8 cal. Keep efforts repeatable.",
+      "intensity_score": 2.55,
+      "type": "C",
+      "level": 0.45
+    },
+    {
+      "id": "wod_304",
+      "description": "6 rounds for time: 25 kettlebell swings (53 lb); 12 thrusters (75 lb); 9 power snatches (135 lb). Record completion time.",
+      "intensity_score": 2.97,
+      "type": "W",
+      "level": 0.72
+    },
+    {
+      "id": "wod_305",
+      "description": "4 intervals, rest 90 seconds after each interval: 1 rope climbs; 20 Double-unders. Keep efforts repeatable.",
+      "intensity_score": 1.28,
+      "type": "G",
+      "level": 0.46
+    },
+    {
+      "id": "wod_306",
+      "description": "AMRAP 24 minutes: 3 thrusters (115 lb); 12 front squats (135 lb). Score total rounds and reps.",
+      "intensity_score": 1.87,
+      "type": "W",
+      "level": 0.51
+    },
+    {
+      "id": "wod_307",
+      "description": "For time, complete the chipper: 5 front squats (65 lb); 5 thrusters (115 lb); 5 back squats (185 lb); 48 Double-unders. Partition as needed and record total time.",
+      "intensity_score": 2.84,
+      "type": "W",
+      "level": 0.64
+    },
+    {
+      "id": "wod_308",
+      "description": "EMOM 15 minutes: rotate through 4 back squats (225 lb); 7 front squats (115 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.35,
+      "type": "W",
+      "level": 0.38
+    },
+    {
+      "id": "wod_309",
+      "description": "For time, complete the chipper: 80 Double-unders; 16 handstand push-ups; 19 pull-ups; Ski erg 250 m. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 0.79
+    },
+    {
+      "id": "wod_310",
+      "description": "5 rounds for time: 5 front squats (135 lb); 5 push presses (75 lb); 16 dumbbell snatches (35 lb). Record completion time.",
+      "intensity_score": 1.64,
+      "type": "W",
+      "level": 0.41
+    },
+    {
+      "id": "wod_311",
+      "description": "AMRAP 8 minutes: Bike 15 cal; 30 Double-unders; Run 200 m. Score total rounds and reps.",
+      "intensity_score": 1.0,
+      "type": "C",
+      "level": 0.25
+    },
+    {
+      "id": "wod_312",
+      "description": "AMRAP 15 minutes: 7 clean and jerks (185 lb); Ski erg 250 m; 3 front squats (155 lb). Score total rounds and reps.",
+      "intensity_score": 1.4,
+      "type": "W",
+      "level": 0.55
+    },
+    {
+      "id": "wod_313",
+      "description": "5 intervals, rest 120 seconds after each interval: 3 handstand push-ups; 8 thrusters (75 lb); 1 muscle-ups. Keep efforts repeatable.",
+      "intensity_score": 1.24,
+      "type": "G",
+      "level": 0.55
+    },
+    {
+      "id": "wod_314",
+      "description": "6 rounds for time: 10 push presses (95 lb); 9 power snatches (135 lb); Row 250 m. Record completion time.",
+      "intensity_score": 1.99,
+      "type": "W",
+      "level": 0.59
+    },
+    {
+      "id": "wod_315",
+      "description": "AMRAP 15 minutes: 15 wall-ball shots (10 lb); Shuttle run 300 m. Score total rounds and reps.",
+      "intensity_score": 1.41,
+      "type": "W",
+      "level": 0.3
+    },
+    {
+      "id": "wod_316",
+      "description": "8 intervals, rest 45 seconds after each interval: Bike 19 cal; 1 rope climbs; 9 sit-ups. Keep efforts repeatable.",
+      "intensity_score": 1.5,
+      "type": "C",
+      "level": 0.49
+    },
+    {
+      "id": "wod_317",
+      "description": "3 rounds for time: 3 power cleans (65 lb); 12 pull-ups; Run 200 m. Record completion time.",
+      "intensity_score": 1.08,
+      "type": "W",
+      "level": 0.35
+    },
+    {
+      "id": "wod_318",
+      "description": "EMOM 12 minutes: rotate through 14 air squats. Use the remaining time each minute as rest.",
+      "intensity_score": 1.15,
+      "type": "G",
+      "level": 0.14
+    },
+    {
+      "id": "wod_319",
+      "description": "7 rounds for time: Ski erg 500 m; 7 pull-ups; Run 200 m. Record completion time.",
+      "intensity_score": 1.33,
+      "type": "C",
+      "level": 0.31
+    },
+    {
+      "id": "wod_320",
+      "description": "7 rounds for time: 3 back squats (275 lb); 15 thrusters (65 lb). Record completion time.",
+      "intensity_score": 2.07,
+      "type": "W",
+      "level": 0.49
+    },
+    {
+      "id": "wod_321",
+      "description": "4 intervals, rest 120 seconds after each interval: Bike 6 cal; 8 toes-to-bars; Row 300 m. Keep efforts repeatable.",
+      "intensity_score": 0.97,
+      "type": "C",
+      "level": 0.33
+    },
+    {
+      "id": "wod_322",
+      "description": "AMRAP 15 minutes: 20 kettlebell swings (26 lb); 9 clean and jerks (65 lb). Score total rounds and reps.",
+      "intensity_score": 1.82,
+      "type": "W",
+      "level": 0.51
+    },
+    {
+      "id": "wod_323",
+      "description": "AMRAP 20 minutes: Run 300 m; 5 front squats (95 lb). Score total rounds and reps.",
+      "intensity_score": 1.14,
+      "type": "C",
+      "level": 0.32
+    },
+    {
+      "id": "wod_324",
+      "description": "AMRAP 20 minutes: 10 front squats (155 lb); 12 kettlebell swings (53 lb); Bike 12 cal. Score total rounds and reps.",
+      "intensity_score": 1.84,
+      "type": "W",
+      "level": 0.45
+    },
+    {
+      "id": "wod_325",
+      "description": "For time, complete the chipper: 8 toes-to-bars; Shuttle run 650 m; 5 rope climbs; 8 muscle-ups. Partition as needed and record total time.",
+      "intensity_score": 1.95,
+      "type": "G",
+      "level": 0.64
+    },
+    {
+      "id": "wod_326",
+      "description": "AMRAP 24 minutes: 5 front squats (155 lb); 1 rope climbs. Score total rounds and reps.",
+      "intensity_score": 1.28,
+      "type": "W",
+      "level": 0.45
+    },
+    {
+      "id": "wod_327",
+      "description": "For time, complete the chipper: 2 rope climbs; 16 walking lunges; 32 box jumps; Ski erg 800 m. Partition as needed and record total time.",
+      "intensity_score": 2.73,
+      "type": "G",
+      "level": 0.64
+    },
+    {
+      "id": "wod_328",
+      "description": "AMRAP 18 minutes: 12 dumbbell snatches (35 lb); 15 kettlebell swings (18 lb); 3 power snatches (95 lb). Score total rounds and reps.",
+      "intensity_score": 1.7,
+      "type": "W",
+      "level": 0.51
+    },
+    {
+      "id": "wod_329",
+      "description": "6 rounds for time: 15 kettlebell swings (70 lb); 16 dumbbell snatches (50 lb). Record completion time.",
+      "intensity_score": 2.95,
+      "type": "W",
+      "level": 0.57
+    },
+    {
+      "id": "wod_330",
+      "description": "For time, complete the chipper: Ski erg 650 m; Run 950 m; 11 pull-ups; Shuttle run 300 m; 40 air squats. Partition as needed and record total time.",
+      "intensity_score": 2.91,
+      "type": "C",
+      "level": 0.51
+    },
+    {
+      "id": "wod_331",
+      "description": "For time, complete the chipper: 16 kettlebell swings (35 lb); 24 push presses (115 lb); 8 power snatches (75 lb); 16 toes-to-bars; Row 400 m; 32 box jumps. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.75
+    },
+    {
+      "id": "wod_332",
+      "description": "7 rounds for time: 1 rope climbs; 1 muscle-ups; 30 Double-unders. Record completion time.",
+      "intensity_score": 1.89,
+      "type": "G",
+      "level": 0.63
+    },
+    {
+      "id": "wod_333",
+      "description": "AMRAP 8 minutes: 2 clean and jerks (135 lb); 7 push presses (135 lb). Score total rounds and reps.",
+      "intensity_score": 1.17,
+      "type": "W",
+      "level": 0.48
+    },
+    {
+      "id": "wod_334",
+      "description": "EMOM 15 minutes: rotate through 16 air squats. Use the remaining time each minute as rest.",
+      "intensity_score": 1.43,
+      "type": "G",
+      "level": 0.17
+    },
+    {
+      "id": "wod_335",
+      "description": "AMRAP 18 minutes: 25 sit-ups; Shuttle run 400 m. Score total rounds and reps.",
+      "intensity_score": 1.5,
+      "type": "G",
+      "level": 0.21
+    },
+    {
+      "id": "wod_336",
+      "description": "5 rounds for time: 75 Double-unders; Bike 15 cal. Record completion time.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 0.55
+    },
+    {
+      "id": "wod_337",
+      "description": "7 rounds for time: Bike 15 cal; 6 push-ups. Record completion time.",
+      "intensity_score": 1.28,
+      "type": "C",
+      "level": 0.19
+    },
+    {
+      "id": "wod_338",
+      "description": "EMOM 12 minutes: rotate through 16 sit-ups. Use the remaining time each minute as rest.",
+      "intensity_score": 1.24,
+      "type": "G",
+      "level": 0.15
+    },
+    {
+      "id": "wod_339",
+      "description": "6 rounds for time: 20 push-ups; Bike 10 cal. Record completion time.",
+      "intensity_score": 1.58,
+      "type": "G",
+      "level": 0.23
+    },
+    {
+      "id": "wod_340",
+      "description": "EMOM 10 minutes: rotate through 1 rope climbs. Use the remaining time each minute as rest.",
+      "intensity_score": 0.88,
+      "type": "G",
+      "level": 0.41
+    },
+    {
+      "id": "wod_341",
+      "description": "7 rounds for time: 3 back squats (185 lb); 9 power snatches (95 lb); 12 kettlebell swings (35 lb). Record completion time.",
+      "intensity_score": 2.03,
+      "type": "W",
+      "level": 0.56
+    },
+    {
+      "id": "wod_342",
+      "description": "4 intervals, rest 120 seconds after each interval: 20 walking lunges; 8 toes-to-bars. Keep efforts repeatable.",
+      "intensity_score": 1.31,
+      "type": "G",
+      "level": 0.37
+    },
+    {
+      "id": "wod_343",
+      "description": "5 rounds for time: Run 600 m; Bike 8 cal. Record completion time.",
+      "intensity_score": 1.13,
+      "type": "C",
+      "level": 0.15
+    },
+    {
+      "id": "wod_344",
+      "description": "7 rounds for time: 7 power snatches (45 lb); 20 air squats; 3 thrusters (95 lb). Record completion time.",
+      "intensity_score": 1.87,
+      "type": "W",
+      "level": 0.49
+    },
+    {
+      "id": "wod_345",
+      "description": "8 rounds for time: 15 kettlebell swings (53 lb); 12 front squats (185 lb). Record completion time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.66
+    },
+    {
+      "id": "wod_346",
+      "description": "AMRAP 12 minutes: 25 air squats; 6 burpees; 12 push-ups. Score total rounds and reps.",
+      "intensity_score": 1.12,
+      "type": "G",
+      "level": 0.21
+    },
+    {
+      "id": "wod_347",
+      "description": "5 intervals, rest 60 seconds after each interval: 1 rope climbs; 16 air squats. Keep efforts repeatable.",
+      "intensity_score": 1.28,
+      "type": "G",
+      "level": 0.46
+    },
+    {
+      "id": "wod_348",
+      "description": "7 rounds for time: Ski erg 500 m; Bike 12 cal. Record completion time.",
+      "intensity_score": 1.45,
+      "type": "C",
+      "level": 0.2
+    },
+    {
+      "id": "wod_349",
+      "description": "EMOM 12 minutes: rotate through Shuttle run 50 m; 6 front squats (185 lb); 1 handstand push-ups. Use the remaining time each minute as rest.",
+      "intensity_score": 1.0,
+      "type": "C",
+      "level": 0.4
+    },
+    {
+      "id": "wod_350",
+      "description": "8 intervals, rest 30 seconds after each interval: 10 sit-ups. Keep efforts repeatable.",
+      "intensity_score": 1.33,
+      "type": "G",
+      "level": 0.16
+    },
+    {
+      "id": "wod_351",
+      "description": "3 rounds for time: 10 push presses (75 lb); 1 rope climbs; 1 muscle-ups. Record completion time.",
+      "intensity_score": 1.23,
+      "type": "W",
+      "level": 0.54
+    },
+    {
+      "id": "wod_352",
+      "description": "AMRAP 24 minutes: 12 power snatches (135 lb); 12 deadlifts (275 lb); 12 walking lunges. Score total rounds and reps.",
+      "intensity_score": 2.42,
+      "type": "W",
+      "level": 0.64
+    },
+    {
+      "id": "wod_353",
+      "description": "6 intervals, rest 60 seconds after each interval: 6 power cleans (185 lb); 6 thrusters (75 lb). Keep efforts repeatable.",
+      "intensity_score": 1.59,
+      "type": "W",
+      "level": 0.51
+    },
+    {
+      "id": "wod_354",
+      "description": "AMRAP 20 minutes: 20 dumbbell snatches (70 lb); 3 clean and jerks (155 lb); 40 air squats. Score total rounds and reps.",
+      "intensity_score": 2.75,
+      "type": "W",
+      "level": 0.7
+    },
+    {
+      "id": "wod_355",
+      "description": "AMRAP 24 minutes: 7 clean and jerks (95 lb); Run 600 m. Score total rounds and reps.",
+      "intensity_score": 1.88,
+      "type": "W",
+      "level": 0.54
+    },
+    {
+      "id": "wod_356",
+      "description": "10 intervals, rest 120 seconds after each interval: 26 sit-ups; 2 muscle-ups; Shuttle run 100 m. Keep efforts repeatable.",
+      "intensity_score": 2.01,
+      "type": "G",
+      "level": 0.65
+    },
+    {
+      "id": "wod_357",
+      "description": "AMRAP 10 minutes: 6 push-ups; 15 sit-ups; 20 air squats. Score total rounds and reps.",
+      "intensity_score": 0.96,
+      "type": "G",
+      "level": 0.15
+    },
+    {
+      "id": "wod_358",
+      "description": "EMOM 15 minutes: rotate through 22 air squats; 11 wall-ball shots (10 lb); Ski erg 200 m. Use the remaining time each minute as rest.",
+      "intensity_score": 1.51,
+      "type": "G",
+      "level": 0.32
+    },
+    {
+      "id": "wod_359",
+      "description": "6 rounds for time: Ski erg 750 m; Shuttle run 150 m. Record completion time.",
+      "intensity_score": 1.32,
+      "type": "C",
+      "level": 0.19
+    },
+    {
+      "id": "wod_360",
+      "description": "For time, complete the chipper: 24 thrusters (65 lb); Bike 40 cal; Run 500 m; 16 deadlifts (315 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.71
+    },
+    {
+      "id": "wod_361",
+      "description": "6 rounds for time: 7 back squats (225 lb); 5 handstand push-ups. Record completion time.",
+      "intensity_score": 1.54,
+      "type": "W",
+      "level": 0.46
+    },
+    {
+      "id": "wod_362",
+      "description": "EMOM 20 minutes: rotate through 4 back squats (155 lb); Row 300 m. Use the remaining time each minute as rest.",
+      "intensity_score": 1.28,
+      "type": "W",
+      "level": 0.33
+    },
+    {
+      "id": "wod_363",
+      "description": "5 rounds for time: Bike 8 cal; Row 400 m. Record completion time.",
+      "intensity_score": 0.97,
+      "type": "C",
+      "level": 0.13
+    },
+    {
+      "id": "wod_364",
+      "description": "10 intervals, rest 60 seconds after each interval: 1 muscle-ups; 20 sit-ups. Keep efforts repeatable.",
+      "intensity_score": 2.05,
+      "type": "G",
+      "level": 0.65
+    },
+    {
+      "id": "wod_365",
+      "description": "4 rounds for time: 40 air squats; Shuttle run 150 m. Record completion time.",
+      "intensity_score": 1.61,
+      "type": "G",
+      "level": 0.22
+    },
+    {
+      "id": "wod_366",
+      "description": "AMRAP 24 minutes: Bike 10 cal; 8 burpees. Score total rounds and reps.",
+      "intensity_score": 1.14,
+      "type": "C",
+      "level": 0.22
+    },
+    {
+      "id": "wod_367",
+      "description": "EMOM 18 minutes: rotate through 1 muscle-ups; 11 sit-ups. Use the remaining time each minute as rest.",
+      "intensity_score": 1.38,
+      "type": "G",
+      "level": 0.57
+    },
+    {
+      "id": "wod_368",
+      "description": "AMRAP 12 minutes: 3 thrusters (115 lb); 25 kettlebell swings (70 lb). Score total rounds and reps.",
+      "intensity_score": 1.93,
+      "type": "W",
+      "level": 0.52
+    },
+    {
+      "id": "wod_369",
+      "description": "6 rounds for time: 25 sit-ups; 5 back squats (95 lb). Record completion time.",
+      "intensity_score": 1.86,
+      "type": "G",
+      "level": 0.38
+    },
+    {
+      "id": "wod_370",
+      "description": "10 intervals, rest 90 seconds after each interval: 10 air squats; 16 sit-ups; 2 pull-ups. Keep efforts repeatable.",
+      "intensity_score": 1.63,
+      "type": "G",
+      "level": 0.34
+    },
+    {
+      "id": "wod_371",
+      "description": "AMRAP 12 minutes: Row 750 m; 50 Double-unders. Score total rounds and reps.",
+      "intensity_score": 1.89,
+      "type": "C",
+      "level": 0.37
+    },
+    {
+      "id": "wod_372",
+      "description": "3 rounds for time: 7 toes-to-bars; 5 pull-ups; 15 sit-ups. Record completion time.",
+      "intensity_score": 1.07,
+      "type": "G",
+      "level": 0.33
+    },
+    {
+      "id": "wod_373",
+      "description": "6 rounds for time: 3 handstand push-ups; 10 burpees. Record completion time.",
+      "intensity_score": 1.3,
+      "type": "G",
+      "level": 0.43
+    },
+    {
+      "id": "wod_374",
+      "description": "6 rounds for time: 12 kettlebell swings (70 lb); 20 dumbbell snatches (50 lb). Record completion time.",
+      "intensity_score": 2.98,
+      "type": "W",
+      "level": 0.58
+    },
+    {
+      "id": "wod_375",
+      "description": "For time, complete the chipper: 16 walking lunges; 19 sit-ups; 13 push-ups; 19 push presses (135 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "G",
+      "level": 0.66
+    },
+    {
+      "id": "wod_376",
+      "description": "4 intervals, rest 120 seconds after each interval: Shuttle run 100 m; 5 back squats (225 lb); 22 Double-unders. Keep efforts repeatable.",
+      "intensity_score": 1.18,
+      "type": "C",
+      "level": 0.37
+    },
+    {
+      "id": "wod_377",
+      "description": "AMRAP 24 minutes: 5 muscle-ups; 5 thrusters (65 lb). Score total rounds and reps.",
+      "intensity_score": 1.42,
+      "type": "G",
+      "level": 0.57
+    },
+    {
+      "id": "wod_378",
+      "description": "EMOM 20 minutes: rotate through 1 rope climbs. Use the remaining time each minute as rest.",
+      "intensity_score": 0.92,
+      "type": "G",
+      "level": 0.41
+    },
+    {
+      "id": "wod_379",
+      "description": "4 rounds for time: 8 box jumps; 12 push-ups; Shuttle run 100 m. Record completion time.",
+      "intensity_score": 0.96,
+      "type": "G",
+      "level": 0.19
+    },
+    {
+      "id": "wod_380",
+      "description": "4 intervals, rest 45 seconds after each interval: 6 thrusters (75 lb). Keep efforts repeatable.",
+      "intensity_score": 1.23,
+      "type": "W",
+      "level": 0.39
+    },
+    {
+      "id": "wod_381",
+      "description": "3 rounds for time: Row 250 m; 6 push-ups; Ski erg 400 m. Record completion time.",
+      "intensity_score": 0.77,
+      "type": "C",
+      "level": 0.13
+    },
+    {
+      "id": "wod_382",
+      "description": "For time, complete the chipper: 14 clean and jerks (135 lb); 16 back squats (95 lb); 24 sit-ups; 8 push presses (65 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.74
+    },
+    {
+      "id": "wod_383",
+      "description": "AMRAP 12 minutes: 9 power snatches (45 lb); 16 dumbbell snatches (70 lb). Score total rounds and reps.",
+      "intensity_score": 1.68,
+      "type": "W",
+      "level": 0.46
+    },
+    {
+      "id": "wod_384",
+      "description": "EMOM 24 minutes: rotate through 5 thrusters (75 lb); 7 power cleans (95 lb); 8 kettlebell swings (18 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.73,
+      "type": "W",
+      "level": 0.46
+    },
+    {
+      "id": "wod_385",
+      "description": "EMOM 20 minutes: rotate through 4 clean and jerks (65 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.32,
+      "type": "W",
+      "level": 0.45
+    },
+    {
+      "id": "wod_386",
+      "description": "5 rounds for time: Bike 25 cal; 3 back squats (185 lb). Record completion time.",
+      "intensity_score": 1.46,
+      "type": "C",
+      "level": 0.38
+    },
+    {
+      "id": "wod_387",
+      "description": "For time, complete the chipper: Bike 32 cal; Row 400 m; 13 dumbbell snatches (70 lb); Shuttle run 300 m. Partition as needed and record total time.",
+      "intensity_score": 2.62,
+      "type": "C",
+      "level": 0.57
+    },
+    {
+      "id": "wod_388",
+      "description": "AMRAP 12 minutes: 5 muscle-ups; 7 push presses (65 lb). Score total rounds and reps.",
+      "intensity_score": 1.24,
+      "type": "G",
+      "level": 0.55
+    },
+    {
+      "id": "wod_389",
+      "description": "EMOM 18 minutes: rotate through Ski erg 300 m; 1 muscle-ups. Use the remaining time each minute as rest.",
+      "intensity_score": 1.19,
+      "type": "C",
+      "level": 0.55
+    },
+    {
+      "id": "wod_390",
+      "description": "7 rounds for time: 30 walking lunges; 12 air squats; 20 push-ups. Record completion time.",
+      "intensity_score": 2.34,
+      "type": "G",
+      "level": 0.32
+    },
+    {
+      "id": "wod_391",
+      "description": "For time, complete the chipper: 32 dumbbell snatches (50 lb); 14 thrusters (135 lb); 8 power cleans (65 lb); 32 box jumps. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.84
+    },
+    {
+      "id": "wod_392",
+      "description": "AMRAP 18 minutes: 3 power cleans (115 lb); 2 clean and jerks (65 lb); 15 box jumps. Score total rounds and reps.",
+      "intensity_score": 1.32,
+      "type": "W",
+      "level": 0.45
+    },
+    {
+      "id": "wod_393",
+      "description": "AMRAP 20 minutes: 12 wall-ball shots (14 lb); 20 kettlebell swings (53 lb). Score total rounds and reps.",
+      "intensity_score": 2.49,
+      "type": "W",
+      "level": 0.48
+    },
+    {
+      "id": "wod_394",
+      "description": "4 rounds for time: 10 wall-ball shots (20 lb); 7 power cleans (135 lb). Record completion time.",
+      "intensity_score": 1.68,
+      "type": "W",
+      "level": 0.48
+    },
+    {
+      "id": "wod_395",
+      "description": "7 rounds for time: Ski erg 400 m; Row 1000 m. Record completion time.",
+      "intensity_score": 2.01,
+      "type": "C",
+      "level": 0.28
+    },
+    {
+      "id": "wod_396",
+      "description": "8 rounds for time: Bike 12 cal; 20 walking lunges; 2 rope climbs. Record completion time.",
+      "intensity_score": 1.86,
+      "type": "C",
+      "level": 0.54
+    },
+    {
+      "id": "wod_397",
+      "description": "4 rounds for time: 12 kettlebell swings (18 lb); Run 100 m. Record completion time.",
+      "intensity_score": 1.12,
+      "type": "W",
+      "level": 0.24
+    },
+    {
+      "id": "wod_398",
+      "description": "5 intervals, rest 45 seconds after each interval: 2 pull-ups; 5 burpees; 13 walking lunges. Keep efforts repeatable.",
+      "intensity_score": 1.0,
+      "type": "G",
+      "level": 0.26
+    },
+    {
+      "id": "wod_399",
+      "description": "AMRAP 20 minutes: 12 kettlebell swings (26 lb); 3 front squats (135 lb); 10 handstand push-ups. Score total rounds and reps.",
+      "intensity_score": 1.53,
+      "type": "W",
+      "level": 0.46
+    },
+    {
+      "id": "wod_400",
+      "description": "6 rounds for time: 12 front squats (155 lb); 8 dumbbell snatches (35 lb); 25 air squats. Record completion time.",
+      "intensity_score": 2.29,
+      "type": "W",
+      "level": 0.5
+    },
+    {
+      "id": "wod_401",
+      "description": "6 rounds for time: 12 toes-to-bars; Ski erg 750 m; 6 burpees. Record completion time.",
+      "intensity_score": 1.65,
+      "type": "G",
+      "level": 0.41
+    },
+    {
+      "id": "wod_402",
+      "description": "AMRAP 8 minutes: 3 toes-to-bars; 2 rope climbs. Score total rounds and reps.",
+      "intensity_score": 0.9,
+      "type": "G",
+      "level": 0.41
+    },
+    {
+      "id": "wod_403",
+      "description": "EMOM 15 minutes: rotate through 6 dumbbell snatches (70 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.54,
+      "type": "W",
+      "level": 0.42
+    },
+    {
+      "id": "wod_404",
+      "description": "8 rounds for time: 40 air squats; 16 walking lunges. Record completion time.",
+      "intensity_score": 3.0,
+      "type": "G",
+      "level": 0.44
+    },
+    {
+      "id": "wod_405",
+      "description": "AMRAP 15 minutes: 8 box jumps; 20 Double-unders; Run 600 m. Score total rounds and reps.",
+      "intensity_score": 1.32,
+      "type": "G",
+      "level": 0.29
+    },
+    {
+      "id": "wod_406",
+      "description": "3 rounds for time: 3 toes-to-bars; 7 thrusters (65 lb); Run 300 m. Record completion time.",
+      "intensity_score": 1.03,
+      "type": "G",
+      "level": 0.36
+    },
+    {
+      "id": "wod_407",
+      "description": "3 rounds for time: 8 push-ups; 10 toes-to-bars. Record completion time.",
+      "intensity_score": 1.07,
+      "type": "G",
+      "level": 0.33
+    },
+    {
+      "id": "wod_408",
+      "description": "5 rounds for time: 10 dumbbell snatches (50 lb); 15 kettlebell swings (70 lb). Record completion time.",
+      "intensity_score": 2.27,
+      "type": "W",
+      "level": 0.49
+    },
+    {
+      "id": "wod_409",
+      "description": "AMRAP 10 minutes: 10 push presses (45 lb); Ski erg 750 m; 3 power cleans (65 lb). Score total rounds and reps.",
+      "intensity_score": 1.2,
+      "type": "W",
+      "level": 0.37
+    },
+    {
+      "id": "wod_410",
+      "description": "AMRAP 10 minutes: 15 kettlebell swings (70 lb); 10 burpees. Score total rounds and reps.",
+      "intensity_score": 1.42,
+      "type": "W",
+      "level": 0.38
+    },
+    {
+      "id": "wod_411",
+      "description": "AMRAP 15 minutes: 1 rope climbs; 7 thrusters (115 lb); 8 dumbbell snatches (70 lb). Score total rounds and reps.",
+      "intensity_score": 1.31,
+      "type": "G",
+      "level": 0.46
+    },
+    {
+      "id": "wod_412",
+      "description": "AMRAP 8 minutes: 20 push-ups; 20 sit-ups; Ski erg 750 m. Score total rounds and reps.",
+      "intensity_score": 1.02,
+      "type": "G",
+      "level": 0.15
+    },
+    {
+      "id": "wod_413",
+      "description": "8 intervals, rest 60 seconds after each interval: Bike 15 cal; 56 Double-unders. Keep efforts repeatable.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 0.57
+    },
+    {
+      "id": "wod_414",
+      "description": "AMRAP 8 minutes: Ski erg 750 m; 20 wall-ball shots (20 lb). Score total rounds and reps.",
+      "intensity_score": 1.42,
+      "type": "C",
+      "level": 0.38
+    },
+    {
+      "id": "wod_415",
+      "description": "For time, complete the chipper: 16 box jumps; 5 power snatches (135 lb); 5 rope climbs; 5 muscle-ups; Shuttle run 650 m; 3 clean and jerks (65 lb). Partition as needed and record total time.",
+      "intensity_score": 2.1,
+      "type": "G",
+      "level": 0.66
+    },
+    {
+      "id": "wod_416",
+      "description": "8 rounds for time: 10 back squats (95 lb); 30 sit-ups. Record completion time.",
+      "intensity_score": 2.91,
+      "type": "W",
+      "level": 0.51
+    },
+    {
+      "id": "wod_417",
+      "description": "EMOM 20 minutes: rotate through 4 deadlifts (315 lb); 7 push presses (45 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.5,
+      "type": "W",
+      "level": 0.41
+    },
+    {
+      "id": "wod_418",
+      "description": "8 rounds for time: 10 walking lunges; 6 push-ups. Record completion time.",
+      "intensity_score": 1.33,
+      "type": "G",
+      "level": 0.19
+    },
+    {
+      "id": "wod_419",
+      "description": "4 rounds for time: Bike 20 cal; Row 150 m. Record completion time.",
+      "intensity_score": 0.95,
+      "type": "C",
+      "level": 0.12
+    },
+    {
+      "id": "wod_420",
+      "description": "EMOM 15 minutes: rotate through 5 power cleans (155 lb); 7 kettlebell swings (18 lb); Ski erg 150 m. Use the remaining time each minute as rest.",
+      "intensity_score": 1.31,
+      "type": "W",
+      "level": 0.45
+    },
+    {
+      "id": "wod_421",
+      "description": "5 rounds for time: 6 push-ups; 2 muscle-ups; 7 handstand push-ups. Record completion time.",
+      "intensity_score": 1.27,
+      "type": "G",
+      "level": 0.55
+    },
+    {
+      "id": "wod_422",
+      "description": "8 intervals, rest 120 seconds after each interval: Shuttle run 100 m; Run 200 m; 11 push-ups. Keep efforts repeatable.",
+      "intensity_score": 1.01,
+      "type": "C",
+      "level": 0.16
+    },
+    {
+      "id": "wod_423",
+      "description": "5 intervals, rest 120 seconds after each interval: 6 dumbbell snatches (25 lb); Row 650 m; 3 front squats (115 lb). Keep efforts repeatable.",
+      "intensity_score": 1.29,
+      "type": "W",
+      "level": 0.35
+    },
+    {
+      "id": "wod_424",
+      "description": "EMOM 24 minutes: rotate through 28 Double-unders. Use the remaining time each minute as rest.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 0.54
+    },
+    {
+      "id": "wod_425",
+      "description": "AMRAP 15 minutes: 15 air squats; 12 push-ups; Shuttle run 400 m. Score total rounds and reps.",
+      "intensity_score": 1.11,
+      "type": "G",
+      "level": 0.17
+    },
+    {
+      "id": "wod_426",
+      "description": "EMOM 12 minutes: rotate through 6 kettlebell swings (26 lb); 8 burpees. Use the remaining time each minute as rest.",
+      "intensity_score": 1.08,
+      "type": "W",
+      "level": 0.25
+    },
+    {
+      "id": "wod_427",
+      "description": "AMRAP 12 minutes: 25 sit-ups; 15 air squats; 20 push-ups. Score total rounds and reps.",
+      "intensity_score": 1.28,
+      "type": "G",
+      "level": 0.19
+    },
+    {
+      "id": "wod_428",
+      "description": "7 rounds for time: 5 power snatches (95 lb); 10 burpees; Shuttle run 100 m. Record completion time.",
+      "intensity_score": 1.52,
+      "type": "W",
+      "level": 0.49
+    },
+    {
+      "id": "wod_429",
+      "description": "EMOM 20 minutes: rotate through 22 air squats; Shuttle run 100 m. Use the remaining time each minute as rest.",
+      "intensity_score": 1.46,
+      "type": "G",
+      "level": 0.2
+    },
+    {
+      "id": "wod_430",
+      "description": "EMOM 18 minutes: rotate through Ski erg 150 m; 7 air squats. Use the remaining time each minute as rest.",
+      "intensity_score": 0.85,
+      "type": "C",
+      "level": 0.13
+    },
+    {
+      "id": "wod_431",
+      "description": "6 rounds for time: 12 power snatches (75 lb); 10 push presses (75 lb). Record completion time.",
+      "intensity_score": 2.17,
+      "type": "W",
+      "level": 0.55
+    },
+    {
+      "id": "wod_432",
+      "description": "EMOM 15 minutes: rotate through Row 150 m; Bike 4 cal. Use the remaining time each minute as rest.",
+      "intensity_score": 0.66,
+      "type": "C",
+      "level": 0.09
+    },
+    {
+      "id": "wod_433",
+      "description": "AMRAP 20 minutes: Run 600 m; Row 500 m. Score total rounds and reps.",
+      "intensity_score": 1.32,
+      "type": "C",
+      "level": 0.17
+    },
+    {
+      "id": "wod_434",
+      "description": "6 intervals, rest 30 seconds after each interval: 2 clean and jerks (95 lb); 5 power cleans (135 lb); Bike 16 cal. Keep efforts repeatable.",
+      "intensity_score": 1.43,
+      "type": "W",
+      "level": 0.48
+    },
+    {
+      "id": "wod_435",
+      "description": "EMOM 18 minutes: rotate through 6 toes-to-bars; 9 walking lunges. Use the remaining time each minute as rest.",
+      "intensity_score": 1.26,
+      "type": "G",
+      "level": 0.36
+    },
+    {
+      "id": "wod_436",
+      "description": "EMOM 18 minutes: rotate through Shuttle run 100 m. Use the remaining time each minute as rest.",
+      "intensity_score": 0.67,
+      "type": "C",
+      "level": 0.1
+    },
+    {
+      "id": "wod_437",
+      "description": "EMOM 10 minutes: rotate through Shuttle run 100 m; Bike 14 cal. Use the remaining time each minute as rest.",
+      "intensity_score": 0.74,
+      "type": "C",
+      "level": 0.11
+    },
+    {
+      "id": "wod_438",
+      "description": "EMOM 18 minutes: rotate through 2 clean and jerks (135 lb); 8 burpees. Use the remaining time each minute as rest.",
+      "intensity_score": 1.36,
+      "type": "W",
+      "level": 0.5
+    },
+    {
+      "id": "wod_439",
+      "description": "4 intervals, rest 120 seconds after each interval: 3 thrusters (45 lb). Keep efforts repeatable.",
+      "intensity_score": 0.97,
+      "type": "W",
+      "level": 0.33
+    },
+    {
+      "id": "wod_440",
+      "description": "EMOM 15 minutes: rotate through 14 kettlebell swings (18 lb). Use the remaining time each minute as rest.",
+      "intensity_score": 1.71,
+      "type": "W",
+      "level": 0.31
+    },
+    {
+      "id": "wod_441",
+      "description": "AMRAP 12 minutes: 20 box jumps; 5 handstand push-ups; Shuttle run 200 m. Score total rounds and reps.",
+      "intensity_score": 1.19,
+      "type": "G",
+      "level": 0.42
+    },
+    {
+      "id": "wod_442",
+      "description": "For time, complete the chipper: Bike 32 cal; Shuttle run 250 m; 3 clean and jerks (65 lb); 19 power snatches (115 lb); Row 800 m; Run 1300 m. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 0.76
+    },
+    {
+      "id": "wod_443",
+      "description": "AMRAP 15 minutes: 10 front squats (95 lb); 9 clean and jerks (115 lb). Score total rounds and reps.",
+      "intensity_score": 1.63,
+      "type": "W",
+      "level": 0.53
+    },
+    {
+      "id": "wod_444",
+      "description": "For time, complete the chipper: 8 push presses (45 lb); 16 burpees; 8 deadlifts (135 lb); 24 kettlebell swings (70 lb); 8 muscle-ups; 19 front squats (115 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.84
+    },
+    {
+      "id": "wod_445",
+      "description": "AMRAP 20 minutes: 5 clean and jerks (115 lb); 12 thrusters (65 lb); 5 handstand push-ups. Score total rounds and reps.",
+      "intensity_score": 1.58,
+      "type": "W",
+      "level": 0.52
+    },
+    {
+      "id": "wod_446",
+      "description": "10 intervals, rest 60 seconds after each interval: 6 walking lunges; 1 rope climbs; 5 thrusters (75 lb). Keep efforts repeatable.",
+      "intensity_score": 1.36,
+      "type": "G",
+      "level": 0.47
+    },
+    {
+      "id": "wod_447",
+      "description": "7 rounds for time: 3 clean and jerks (65 lb); 25 kettlebell swings (70 lb). Record completion time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.7
+    },
+    {
+      "id": "wod_448",
+      "description": "For time, complete the chipper: 2 rope climbs; 5 back squats (225 lb); 32 walking lunges; 10 push-ups; 5 muscle-ups; 64 sit-ups. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "G",
+      "level": 0.83
+    },
+    {
+      "id": "wod_449",
+      "description": "5 rounds for time: 20 dumbbell snatches (25 lb); 10 deadlifts (185 lb); Row 250 m. Record completion time.",
+      "intensity_score": 1.78,
+      "type": "W",
+      "level": 0.39
+    },
+    {
+      "id": "wod_450",
+      "description": "8 intervals, rest 45 seconds after each interval: 6 handstand push-ups. Keep efforts repeatable.",
+      "intensity_score": 1.31,
+      "type": "G",
+      "level": 0.43
+    },
+    {
+      "id": "wod_451",
+      "description": "For time, complete the chipper: 19 pull-ups; Bike 13 cal; 16 toes-to-bars; 40 sit-ups; Row 1200 m. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "G",
+      "level": 0.63
+    },
+    {
+      "id": "wod_452",
+      "description": "6 intervals, rest 90 seconds after each interval: 13 push-ups; 6 pull-ups. Keep efforts repeatable.",
+      "intensity_score": 1.25,
+      "type": "G",
+      "level": 0.29
+    },
+    {
+      "id": "wod_453",
+      "description": "AMRAP 8 minutes: Ski erg 150 m; 12 back squats (155 lb); Bike 30 cal. Score total rounds and reps.",
+      "intensity_score": 1.05,
+      "type": "C",
+      "level": 0.32
+    },
+    {
+      "id": "wod_454",
+      "description": "AMRAP 15 minutes: Shuttle run 150 m; 12 pull-ups. Score total rounds and reps.",
+      "intensity_score": 0.99,
+      "type": "C",
+      "level": 0.26
+    },
+    {
+      "id": "wod_455",
+      "description": "AMRAP 20 minutes: 5 muscle-ups; 30 sit-ups. Score total rounds and reps.",
+      "intensity_score": 2.05,
+      "type": "G",
+      "level": 0.65
+    },
+    {
+      "id": "wod_456",
+      "description": "7 rounds for time: 2 rope climbs; 15 burpees. Record completion time.",
+      "intensity_score": 2.19,
+      "type": "G",
+      "level": 0.94
+    },
+    {
+      "id": "wod_457",
+      "description": "8 rounds for time: Shuttle run 300 m; Row 500 m. Record completion time.",
+      "intensity_score": 2.78,
+      "type": "C",
+      "level": 0.86
+    },
+    {
+      "id": "wod_458",
+      "description": "For time, complete the chipper: 24 thrusters (115 lb); Shuttle run 400 m; 20 back squats (275 lb); 30 kettlebell swings (35 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.87
+    },
+    {
+      "id": "wod_459",
+      "description": "For time, complete the chipper: 14 toes-to-bars; 20 burpees; 30 push-ups; 60 sit-ups; 60 walking lunges. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "G",
+      "level": 0.84
+    },
+    {
+      "id": "wod_460",
+      "description": "7 rounds for time: 5 clean and jerks (135 lb); 16 dumbbell snatches (70 lb). Record completion time.",
+      "intensity_score": 2.73,
+      "type": "W",
+      "level": 0.98
+    },
+    {
+      "id": "wod_461",
+      "description": "5 rounds for time: 10 toes-to-bars; 10 pull-ups; 9 thrusters (135 lb). Record completion time.",
+      "intensity_score": 2.51,
+      "type": "G",
+      "level": 0.72
+    },
+    {
+      "id": "wod_462",
+      "description": "10 intervals, rest 120 seconds after each interval: Run 450 m; Ski erg 400 m; 19 sit-ups. Keep efforts repeatable.",
+      "intensity_score": 2.75,
+      "type": "C",
+      "level": 0.96
+    },
+    {
+      "id": "wod_463",
+      "description": "5 rounds for time: 9 power cleans (135 lb); Bike 30 cal. Record completion time.",
+      "intensity_score": 2.64,
+      "type": "W",
+      "level": 0.9
+    },
+    {
+      "id": "wod_464",
+      "description": "For time, complete the chipper: 4 rope climbs; 14 toes-to-bars; 50 wall-ball shots (20 lb); 40 push-ups; 14 power snatches (95 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "G",
+      "level": 0.95
+    },
+    {
+      "id": "wod_465",
+      "description": "For time, complete the chipper: 24 power cleans (185 lb); Shuttle run 600 m; 40 kettlebell swings (35 lb); 40 wall-ball shots (20 lb); 80 air squats; 30 thrusters (115 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 1.0
+    },
+    {
+      "id": "wod_466",
+      "description": "6 intervals, rest 60 seconds after each interval: 6 toes-to-bars; 13 dumbbell snatches (70 lb). Keep efforts repeatable.",
+      "intensity_score": 2.35,
+      "type": "G",
+      "level": 0.89
+    },
+    {
+      "id": "wod_467",
+      "description": "For time, complete the chipper: Bike 30 cal; Shuttle run 600 m; Row 1500 m; Ski erg 1000 m; 40 dumbbell snatches (70 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 0.93
+    },
+    {
+      "id": "wod_468",
+      "description": "5 rounds for time: 5 clean and jerks (135 lb); 10 back squats (185 lb); 9 thrusters (135 lb). Record completion time.",
+      "intensity_score": 2.74,
+      "type": "W",
+      "level": 0.74
+    },
+    {
+      "id": "wod_469",
+      "description": "8 intervals, rest 90 seconds after each interval: 2 rope climbs. Keep efforts repeatable.",
+      "intensity_score": 2.14,
+      "type": "G",
+      "level": 0.73
+    },
+    {
+      "id": "wod_470",
+      "description": "10 intervals, rest 30 seconds after each interval: 5 power snatches (135 lb); 8 dumbbell snatches (50 lb). Keep efforts repeatable.",
+      "intensity_score": 2.3,
+      "type": "W",
+      "level": 0.84
+    },
+    {
+      "id": "wod_471",
+      "description": "6 rounds for time: 10 toes-to-bars; 30 sit-ups; 20 box jumps. Record completion time.",
+      "intensity_score": 2.23,
+      "type": "G",
+      "level": 0.84
+    },
+    {
+      "id": "wod_472",
+      "description": "10 rounds for time: 100 Double-unders; Shuttle run 200 m. Record completion time.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 1.0
+    },
+    {
+      "id": "wod_473",
+      "description": "10 intervals, rest 45 seconds after each interval: 6 power cleans (135 lb). Keep efforts repeatable.",
+      "intensity_score": 2.39,
+      "type": "W",
+      "level": 0.87
+    },
+    {
+      "id": "wod_474",
+      "description": "5 rounds for time: 7 handstand push-ups; 10 toes-to-bars; 15 box jumps. Record completion time.",
+      "intensity_score": 2.34,
+      "type": "G",
+      "level": 0.76
+    },
+    {
+      "id": "wod_475",
+      "description": "10 intervals, rest 120 seconds after each interval: 5 power snatches (115 lb). Keep efforts repeatable.",
+      "intensity_score": 2.74,
+      "type": "W",
+      "level": 0.82
+    },
+    {
+      "id": "wod_476",
+      "description": "8 rounds for time: 5 muscle-ups; 25 wall-ball shots (20 lb); 15 burpees. Record completion time.",
+      "intensity_score": 3.0,
+      "type": "G",
+      "level": 0.81
+    },
+    {
+      "id": "wod_477",
+      "description": "10 intervals, rest 90 seconds after each interval: 38 Double-unders; Ski erg 300 m; Run 450 m. Keep efforts repeatable.",
+      "intensity_score": 2.57,
+      "type": "C",
+      "level": 0.73
+    },
+    {
+      "id": "wod_478",
+      "description": "8 intervals, rest 45 seconds after each interval: 8 power snatches (115 lb); 6 pull-ups; Row 500 m. Keep efforts repeatable.",
+      "intensity_score": 2.76,
+      "type": "W",
+      "level": 0.93
+    },
+    {
+      "id": "wod_479",
+      "description": "10 rounds for time: 5 muscle-ups; 10 toes-to-bars. Record completion time.",
+      "intensity_score": 2.35,
+      "type": "G",
+      "level": 0.86
+    },
+    {
+      "id": "wod_480",
+      "description": "8 rounds for time: 15 thrusters (135 lb); 5 muscle-ups; 15 push presses (115 lb). Record completion time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.95
+    },
+    {
+      "id": "wod_481",
+      "description": "8 intervals, rest 30 seconds after each interval: 6 toes-to-bars; 13 dumbbell snatches (70 lb). Keep efforts repeatable.",
+      "intensity_score": 2.63,
+      "type": "G",
+      "level": 0.89
+    },
+    {
+      "id": "wod_482",
+      "description": "For time, complete the chipper: 150 Double-unders; 10 handstand push-ups; Bike 30 cal; 50 wall-ball shots (14 lb); 60 sit-ups. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 1.0
+    },
+    {
+      "id": "wod_483",
+      "description": "5 rounds for time: 9 power cleans (155 lb); 12 thrusters (135 lb); 12 power snatches (115 lb). Record completion time.",
+      "intensity_score": 2.66,
+      "type": "W",
+      "level": 0.97
+    },
+    {
+      "id": "wod_484",
+      "description": "8 rounds for time: 7 handstand push-ups; 12 toes-to-bars; 30 walking lunges. Record completion time.",
+      "intensity_score": 2.45,
+      "type": "G",
+      "level": 0.74
+    },
+    {
+      "id": "wod_485",
+      "description": "7 rounds for time: 12 power snatches (115 lb); Bike 15 cal. Record completion time.",
+      "intensity_score": 2.78,
+      "type": "W",
+      "level": 0.86
+    },
+    {
+      "id": "wod_486",
+      "description": "5 rounds for time: 3 muscle-ups; 5 clean and jerks (135 lb). Record completion time.",
+      "intensity_score": 2.6,
+      "type": "G",
+      "level": 0.97
+    },
+    {
+      "id": "wod_487",
+      "description": "10 intervals, rest 120 seconds after each interval: Shuttle run 150 m; Row 550 m. Keep efforts repeatable.",
+      "intensity_score": 2.7,
+      "type": "C",
+      "level": 0.74
+    },
+    {
+      "id": "wod_488",
+      "description": "For time, complete the chipper: 24 power cleans (185 lb); 20 front squats (135 lb); 50 kettlebell swings (70 lb); 24 thrusters (95 lb); 30 box jumps; 40 wall-ball shots (14 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 1.0
+    },
+    {
+      "id": "wod_489",
+      "description": "8 intervals, rest 60 seconds after each interval: 5 toes-to-bars; 8 deadlifts (275 lb); 10 dumbbell snatches (50 lb). Keep efforts repeatable.",
+      "intensity_score": 2.61,
+      "type": "G",
+      "level": 0.77
+    },
+    {
+      "id": "wod_490",
+      "description": "8 intervals, rest 45 seconds after each interval: 5 power cleans (135 lb). Keep efforts repeatable.",
+      "intensity_score": 2.63,
+      "type": "W",
+      "level": 0.84
+    },
+    {
+      "id": "wod_491",
+      "description": "For time, complete the chipper: 6 rope climbs; Ski erg 1500 m; Shuttle run 600 m; 20 toes-to-bars; 24 burpees; 200 Double-unders. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "G",
+      "level": 1.0
+    },
+    {
+      "id": "wod_492",
+      "description": "6 intervals, rest 45 seconds after each interval: Ski erg 400 m; Run 600 m; Bike 11 cal. Keep efforts repeatable.",
+      "intensity_score": 2.19,
+      "type": "C",
+      "level": 0.72
+    },
+    {
+      "id": "wod_493",
+      "description": "For time, complete the chipper: 24 power snatches (115 lb); 20 push presses (135 lb); 30 thrusters (95 lb); 32 dumbbell snatches (70 lb); 30 kettlebell swings (70 lb). Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 1.0
+    },
+    {
+      "id": "wod_494",
+      "description": "8 intervals, rest 45 seconds after each interval: 3 handstand push-ups; 16 walking lunges; Shuttle run 200 m. Keep efforts repeatable.",
+      "intensity_score": 2.05,
+      "type": "G",
+      "level": 0.94
+    },
+    {
+      "id": "wod_495",
+      "description": "10 intervals, rest 30 seconds after each interval: 6 power cleans (185 lb). Keep efforts repeatable.",
+      "intensity_score": 2.78,
+      "type": "W",
+      "level": 0.88
+    },
+    {
+      "id": "wod_496",
+      "description": "8 intervals, rest 60 seconds after each interval: 3 muscle-ups. Keep efforts repeatable.",
+      "intensity_score": 2.59,
+      "type": "G",
+      "level": 0.87
+    },
+    {
+      "id": "wod_497",
+      "description": "8 intervals, rest 45 seconds after each interval: 75 Double-unders. Keep efforts repeatable.",
+      "intensity_score": 3.0,
+      "type": "C",
+      "level": 1.0
+    },
+    {
+      "id": "wod_498",
+      "description": "6 intervals, rest 45 seconds after each interval: 6 power cleans (155 lb); Bike 13 cal. Keep efforts repeatable.",
+      "intensity_score": 2.67,
+      "type": "W",
+      "level": 0.95
+    },
+    {
+      "id": "wod_499",
+      "description": "6 rounds for time: 5 muscle-ups; 7 clean and jerks (135 lb); 100 Double-unders. Record completion time.",
+      "intensity_score": 3.0,
+      "type": "G",
+      "level": 0.9
+    },
+    {
+      "id": "wod_500",
+      "description": "For time, complete the chipper: 18 power snatches (115 lb); 24 dumbbell snatches (50 lb); 14 back squats (275 lb); 10 muscle-ups. Partition as needed and record total time.",
+      "intensity_score": 3.0,
+      "type": "W",
+      "level": 0.85
+    }
+  ]
+}

@@ -148,3 +148,8 @@ class TwinRotor:
         return x_out.squeeze().tolist()
 
 
+class TwinRotorEnhanced(TwinRotor):
+
+    pass
+
+
