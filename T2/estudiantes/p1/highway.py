@@ -3,6 +3,9 @@ import highway_env
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
+import imageio
+from datetime import datetime
+from pathlib import Path
 
 from DQN import DQN, ReplayMemory, epsilon_schedule
 
@@ -32,10 +35,10 @@ config_dict = {
     "offscreen_rendering": False,
 
     # Reward info
-    "collision_reward": -1,  # The reward received when colliding with a vehicle.
-    "high_speed_reward": 0.4,  # The reward received when driving at full speed, linearly mapped to zero for
+    "collision_reward": -10,  # The reward received when colliding with a vehicle.
+    "high_speed_reward": 0.2,  # The reward received when driving at full speed, linearly mapped to zero for
     "reward_speed_range": [20, 30],  # [m/s] The reward for high speed is mapped linearly from this range to [0, HighwayEnv.HIGH_SPEED_REWARD].
-    "normalize_reward": True,
+    "normalize_reward": False,
 }
 
 
@@ -43,6 +46,10 @@ train_env = gym.make("highway-v0", config=config_dict)
 obs_dim = int(np.prod(train_env.observation_space.shape))
 num_actions = train_env.action_space.n
 max_steps = config_dict["duration"] * config_dict["policy_frequency"]
+
+results_dir = Path(__file__).resolve().parent / "results"
+results_dir.mkdir(parents=True, exist_ok=True)
+run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
 
 DQN_agent = DQN(
     gamma=0.99,
@@ -57,7 +64,7 @@ DQN_agent = DQN(
 )
 
 
-num_episodes = 1000
+num_episodes = 200
 eval_episodes = 20
 
 reward_history = []
@@ -95,9 +102,11 @@ for episode in range(num_episodes):
     print(f"  Reward: {episode_reward:.3f}, Loss: {loss_history[-1]:.3f}, Epsilon: {epsilon:.3f}, Collision: {crashed}")
 
 
-torch.save(DQN_agent.policy_net.state_dict(), "dqn_highway.pth")
+policy_path = results_dir / f"dqn_highway_{run_id}.pth"
+torch.save(DQN_agent.policy_net.state_dict(), policy_path)
+print(f"Saved policy to: {policy_path}")
 
-eval_env = gym.make("highway-v0", config=config_dict, render_mode="human")
+eval_env = gym.make("highway-v0", config=config_dict, render_mode="rgb_array")
 eval_rewards = []
 eval_collisions = 0
 
@@ -109,6 +118,7 @@ for _ in range(eval_episodes):
     for _ in range(max_steps):
         action = DQN_agent.calc_action(state, 0.0)
         next_state, reward, done, truncated, info = eval_env.step(action)
+
 
         crashed = crashed or bool(info.get("crashed", False))
         episode_reward += reward
@@ -144,7 +154,36 @@ axes[2].set_ylabel("Colisión")
 axes[2].legend()
 
 plt.tight_layout()
+figure_path = results_dir / f"training_curves_{run_id}.png"
+plt.savefig(figure_path, dpi=200, bbox_inches="tight")
+print(f"Saved figure to: {figure_path}")
 plt.show()
 
 eval_env.close()
 train_env.close()
+
+
+# --- Extra: correr la política guardada y guardar un GIF ---
+try:
+    # cargar pesos guardados
+    DQN_agent.policy_net.load_state_dict(torch.load("dqn_highway.pth", map_location=DQN_agent.device))
+    gif_env = gym.make("highway-v0", config=config_dict, render_mode="rgb_array")
+    frames = []
+
+    state, info = gif_env.reset()
+    frames.append(gif_env.render())
+
+    for _ in range(max_steps):
+        action = DQN_agent.calc_action(state, 0.0)
+        state, reward, done, truncated, info = gif_env.step(action)
+        frame = gif_env.render()
+        frames.append(frame)
+        if done or truncated:
+            break
+
+    gif_path = "dqn_policy.gif"
+    imageio.mimsave(gif_path, frames, fps=15)
+    print(f"Saved GIF: {gif_path}")
+    gif_env.close()
+except Exception as e:
+    print("Could not create GIF of policy:", e)

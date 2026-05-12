@@ -308,15 +308,24 @@ def make_person_params(
 
 
 
-def make_env(params, seed: int, horizon: int = 365):
+def make_env(
+    params,
+    seed: int,
+    horizon: int = 365,
+    reward_mode: str = "measured_delta",
+    measurement_mode: str = "physiology",
+    measurement_noise: float = 0.0,
+    sensor_noise: float = 0.0,
+    effort_penalty: float = 0.0,
+):
     env = PracticeEnv(
         horizon=horizon,
         params=params,
-        measurement_mode="physiology",
-        measurement_noise=0.0,
-        sensor_noise=0.0,
-        reward_mode="measured_delta",#"measured_delta",#"physio_dense", #"physio_hybrid",
-        effort_penalty=0.0,
+        measurement_mode=measurement_mode,
+        measurement_noise=measurement_noise,
+        sensor_noise=sensor_noise,
+        reward_mode=reward_mode,
+        effort_penalty=effort_penalty,
         seed=seed,
     )
     env.action_space.seed(seed)
