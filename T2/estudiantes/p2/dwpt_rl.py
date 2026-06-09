@@ -4,7 +4,6 @@ import numpy as np
 from gymnasium import spaces
 import gymnasium as gym
 
-
 @dataclass
 class DWPTParams:
 
@@ -181,7 +180,7 @@ class DWPTContinuousShareEnv(gym.Env):
         else:
             self.p.r_load_dc = 5.1
             self.p.speed_mps = 10
-        print('Load: {} | Car speed: {}'.format(self.p.r_load_dc, self.p.speed_mps))
+        # print('Load: {} | Car speed: {}'.format(self.p.r_load_dc, self.p.speed_mps))
 
 
         self.k1, self.k2 = self.coupling_profile(self.x_pos)
@@ -279,7 +278,49 @@ class DWPTContinuousShareEnv(gym.Env):
             return dicto_out
         else:
             return np.array(list(dicto_out.values()))
+        
+    #######################################################
+    ######              REWARD FUNCTION              ######
+    #######################################################
+    def compute_reward(self):
+        if self.system_knowledge == 'no_comm':
+            return self.compute_reward_no_comm()
+        else:
+            return self.compute_reward_full()
+    
+    def compute_reward_full(self):
+        power_term = self.pout / self.p.p_rated
+        efficiency_term = self.eta
+        phase_penalty = phase_band_penalty(self.phase_active_mag_deg)
 
+        reward = (
+            1.0 * power_term
+            + 0.15 * efficiency_term
+            - 0.25 * phase_penalty
+        )
+
+        return float(reward)
+    
+    def compute_reward_no_comm(self):
+        #solo vemos variables del primario (ni p_out no eta)
+        power_term = self.pin / self.p.p_rated
+        
+        phase_penalty = phase_band_penalty(self.phase_active_mag_deg)
+        
+        capacitor_penalty = (
+            max(0.0, self.vc1 - 6500.0) / 6500.0
+            + max(0.0, self.vc2 - 6500.0) / 6500.0
+        )
+        
+        reward = (
+            1.0 * power_term
+            - 0.25 * phase_penalty
+            - 0.05 * capacitor_penalty
+        )
+        
+        return float(reward)
+    #######################################################
+    #######################################################
 
     def step(self, action):
         """
@@ -331,8 +372,16 @@ class DWPTContinuousShareEnv(gym.Env):
 
         obs = self.obs_func()
 
+        # Agregado por mi para que funcione PPO de github! 
+        # debe retornar obs, reward, terminated, truncated, info
+        reward = self.compute_reward()
+
         terminated = bool(self.t >= self.p.episode_length_s)
-        return obs, terminated
+
+        truncated = False
+        info = {}
+
+        return obs, reward, terminated, truncated, info
 
 
 

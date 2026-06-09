@@ -14,7 +14,6 @@ matplotlib.use("Agg")
 
 
 
-
 def set_seed(seed: int):
     random.seed(seed)
     np.random.seed(seed)
@@ -255,6 +254,7 @@ def train(env, cfg: SACConfig):
 
     metrics = {key: [] for key in [
         "episode_returns",
+        "mean_rewards",
         "update_steps",
         "q_loss", "pi_loss",
         "alpha", "alpha_loss",
@@ -274,9 +274,9 @@ def train(env, cfg: SACConfig):
         else:
             act = agent.act(obs, deterministic=False)
 
-        next_obs, terminated = env.step(act)
-        rew      = reward_function(next_obs)
-        done     = float(terminated)
+        next_obs, rew, terminated, truncated, info = env.step(act)
+        done_flag = bool(terminated or truncated)
+        done = float(done_flag)
 
         rb.add(obs, act, rew, next_obs, done)
 
@@ -284,9 +284,10 @@ def train(env, cfg: SACConfig):
         ep_ret += rew
         ep_len += 1
 
-        if terminated:
+        if done_flag:
             ep_num += 1
             metrics["episode_returns"].append((t, ep_ret))
+            metrics["mean_rewards"].append(ep_ret / max(ep_len, 1))
             recent      = metrics["episode_returns"][-10:]
             recent_avg  = np.mean([r for _, r in recent])
             sps         = int(t / (time.time() - training_start))

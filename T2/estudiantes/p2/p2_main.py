@@ -1,15 +1,41 @@
-from dwpt_rl import DWPTContinuousShareEnv, DWPTParams
+import os
+
+from dwpt_rl import DWPTContinuousShareEnv, DWPTParams, oracle_controller
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
+from ppo_continuous_action import *
+from sac import SACConfig, train as train_sac
+import torch
+
+print("\n" + "="*80)
+print("Escenario a correr:")
+print("  [1] full")
+print("  [2] no_comm")
+print("="*80)
+user_choice = input("1 o 2?").strip()
+
+if user_choice == "2":
+    system_knowledge = 'no_comm'
+    suffix = "_no_comm"
+    print(f"Running NO_COMM\n")
+else:
+    system_knowledge = 'full'
+    suffix = ""
+    print(f"Running FULL\n")
+
 params = DWPTParams()
-env = DWPTContinuousShareEnv(params=params, seed=0, system_knowledge='full')
+env = DWPTContinuousShareEnv(params=params, seed=0, system_knowledge=system_knowledge)
 env.reset(variable=False)
 
+base_dir = os.path.dirname(os.path.abspath(__file__))
+path = os.path.join(base_dir, f"results{suffix}")
+os.makedirs(path, exist_ok=True)
+
 # ============================================================================
-# PERFIL DE ACOPLAMIENTO MAGNÉTICO: k1 y k2 vs posición
+# k1 y k2 vs posición
 positions = np.linspace(0, env.p.coil_spacing_m * 2, 200)
 k1_values = []
 k2_values = []
@@ -30,11 +56,11 @@ plt.title('Perfil de acoplamiento magnético', fontsize=14, fontweight='bold')
 plt.legend(fontsize=11)
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
-plt.savefig('coupling_profile.png')
+plt.savefig(os.path.join(path, 'coupling_profile.png'))
 plt.close()
 
 # ============================================================================
-# POTENCIA vs FRECUENCIA para distintos valores de k1
+# P vs f para distintos valores de k1
 frequencies = np.linspace(env.p.f_min, env.p.f_max, 100)
 k1_test_values = [0.05, 0.10, 0.15, 0.20, 0.26]
 
@@ -52,11 +78,11 @@ plt.title('Potencia transferida vs Frecuencia (share=0)', fontsize=14, fontweigh
 plt.legend(fontsize=11)
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
-plt.savefig('power_vs_freq.png')
+plt.savefig(os.path.join(path, 'power_vs_freq.png'))
 plt.close()
 
 # ============================================================================
-# EFICIENCIA vs FRECUENCIA para distintos valores de k1
+# eta vs f para distintos valores de k1
 plt.figure(figsize=(12, 6))
 for k1_test in k1_test_values:
     eta_values = []
@@ -72,11 +98,11 @@ plt.legend(fontsize=11)
 plt.grid(True, alpha=0.3)
 plt.ylim([0, 1])
 plt.tight_layout()
-plt.savefig('efficiency_vs_freq.png')
+plt.savefig(os.path.join(path, 'efficiency_vs_freq.png'))
 plt.close()
 
 # ============================================================================
-# POTENCIA vs DESFASE: barriendo frecuencia para distintos k1
+# P vs phi barriendo frecuencia vs k1
 plt.figure(figsize=(12, 6))
 for k1_test in k1_test_values:
     p_out_phase = []
@@ -93,11 +119,11 @@ plt.title('Potencia vs Desfase (variando frecuencia, share=0)', fontsize=14, fon
 plt.legend(fontsize=11)
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
-plt.savefig('power_vs_phase.png')
+plt.savefig(os.path.join(path, 'power_vs_phase.png'))
 plt.close()
 
 # ============================================================================
-# POTENCIA vs SHARE para pares (k1, k2)
+# P vs share vs pares (k1, k2)
 shares = np.linspace(0.0, 1.0, 50)
 k_pairs = [(0.05, 0.20), (0.15, 0.15), (0.20, 0.05), (0.26, 0.26)]
 
@@ -115,344 +141,311 @@ plt.title('Potencia vs Share (frecuencia fija en 86.5 kHz)', fontsize=14, fontwe
 plt.legend(fontsize=10)
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
-plt.savefig('power_vs_share.png')
+plt.savefig(os.path.join(path, 'power_vs_share.png'))
 plt.close()
 
+#############
+# Entrenamiento PPO + SAC
 
-import torch
-import torch.nn as nn
-import torch.optim as optim
-from sac import SACConfig, SACAgent, ReplayBuffer, to_tensor, set_seed, mlp, reward_function
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+print("=============================")
+print("             PPO             ")
+print("=============================")
 
-class PPOAgent:
-    def __init__(self, obs_dim, act_dim, act_limit, lr=3e-4, gamma=0.99, lam=0.95, hidden=256, device='cpu'):
-        self.device = torch.device(device)
-        self.gamma = gamma
-        self.lam = lam
-        self.act_limit = act_limit
-        
-        self.actor = nn.Sequential(
-            nn.Linear(obs_dim, hidden), nn.Tanh(),
-            nn.Linear(hidden, hidden), nn.Tanh(),
-            nn.Linear(hidden, act_dim), nn.Tanh()
-        ).to(self.device)
-        
-        self.critic = nn.Sequential(
-            nn.Linear(obs_dim, hidden), nn.Tanh(),
-            nn.Linear(hidden, hidden), nn.Tanh(),
-            nn.Linear(hidden, 1)
-        ).to(self.device)
-        
-        self.log_std = nn.Parameter(torch.zeros(act_dim, device=self.device))
-        self.eps = 1e-6
-        
-        self.actor_opt = optim.Adam(list(self.actor.parameters()) + [self.log_std], lr=lr)
-        self.critic_opt = optim.Adam(self.critic.parameters(), lr=lr)
-        
-        self.trajectory = []
+args = Args()
+ppo_agent, ppo_history = train_ppo(args, system_knowledge=system_knowledge)
 
-    def _get_dist(self, obs_t):
-        mu = self.actor(obs_t)
-        std = torch.exp(self.log_std).expand_as(mu)
-        return torch.distributions.Normal(mu, std)
+print("=============================")
+print("             SAC             ")
+print("=============================")
 
-    def _log_prob_from_action(self, obs_t, action_t):
-        scaled = torch.clamp(action_t / self.act_limit, -0.99999, 0.99999)
-        z = 0.5 * torch.log((1 + scaled) / (1 - scaled + 1e-7))
-        dist = self._get_dist(obs_t)
-        logp_z = dist.log_prob(z).sum(dim=-1)
-        logp_pi = logp_z - torch.log(1 - scaled.pow(2) + 1e-7).sum(dim=-1)
-        return logp_pi
+sac_cfg = SACConfig(seed=args.seed, total_steps=args.total_timesteps)
+sac_env = make_env(system_knowledge=system_knowledge)
+sac_history, sac_agent = train_sac(sac_env, sac_cfg)
 
-    @torch.no_grad()
-    def act(self, obs):
-        obs_t = torch.tensor(obs, dtype=torch.float32, device=self.device).unsqueeze(0)
-        dist = self._get_dist(obs_t)
-        z = dist.rsample()
-        a = torch.tanh(z) * self.act_limit
-        logp = self._log_prob_from_action(obs_t, a)
-        val = self.critic(obs_t).squeeze(0)
-        return a.squeeze(0).cpu().numpy(), float(logp.item()), float(val.item())
-
-    def store_transition(self, obs, act, logp, rew, val, done):
-        self.trajectory.append((obs, act, logp, rew, val, done))
-
-    def _compute_gae(self, rewards, values, dones, last_value):
-        advantages = np.zeros_like(rewards, dtype=np.float32)
-        gae = 0.0
-        for t in reversed(range(len(rewards))):
-            next_val = last_value if t == len(rewards) - 1 else values[t + 1]
-            nonterminal = 1.0 - dones[t]
-            delta = rewards[t] + self.gamma * next_val * nonterminal - values[t]
-            gae = delta + self.gamma * self.lam * nonterminal * gae
-            advantages[t] = gae
-        returns = advantages + values
-        return advantages, returns
-
-    def update(self, last_value=0.0, epochs=10, batch_size=128):
-        obs_np = np.array([t[0] for t in self.trajectory], dtype=np.float32)
-        act_np = np.array([t[1] for t in self.trajectory], dtype=np.float32)
-        logp_np = np.array([t[2] for t in self.trajectory], dtype=np.float32)
-        rew_np = np.array([t[3] for t in self.trajectory], dtype=np.float32)
-        val_np = np.array([t[4] for t in self.trajectory], dtype=np.float32)
-        done_np = np.array([t[5] for t in self.trajectory], dtype=np.float32)
-
-        adv_np, ret_np = self._compute_gae(rew_np, val_np, done_np, float(last_value))
-        adv_max = np.abs(adv_np).max() + 1e-8
-        adv_np = adv_np / adv_max
-
-        obs_b = torch.tensor(obs_np, dtype=torch.float32, device=self.device)
-        act_b = torch.tensor(act_np, dtype=torch.float32, device=self.device)
-        logp_old = torch.tensor(logp_np, dtype=torch.float32, device=self.device)
-        adv_b = torch.tensor(adv_np, dtype=torch.float32, device=self.device)
-        ret_b = torch.tensor(ret_np, dtype=torch.float32, device=self.device)
-        
-        n_traj = len(self.trajectory)
-        actor_losses = []
-        critic_losses = []
-        for _ in range(epochs):
-            idx = np.random.permutation(n_traj)
-            for i in range(0, n_traj, batch_size):
-                batch_idx = idx[i:i+batch_size]
-                
-                obs_batch = obs_b[batch_idx]
-                act_batch = act_b[batch_idx]
-                logp_old_batch = logp_old[batch_idx]
-                adv_batch = adv_b[batch_idx]
-                ret_batch = ret_b[batch_idx]
-                
-                logp_new = self._log_prob_from_action(obs_batch, act_batch)
-                
-                ratio = torch.exp(logp_new - logp_old_batch)
-                ratio_clipped = torch.clamp(ratio, 1-0.1, 1+0.1)
-                surr1 = ratio * adv_batch
-                surr2 = ratio_clipped * adv_batch
-                actor_loss = -torch.min(surr1, surr2).mean()
-                
-                self.actor_opt.zero_grad()
-                actor_loss.backward()
-                self.actor_opt.step()
-                actor_losses.append(float(actor_loss.item()))
-                
-                val_pred = self.critic(obs_batch).squeeze()
-                critic_loss = torch.mean((val_pred - ret_batch) ** 2)
-                
-                self.critic_opt.zero_grad()
-                critic_loss.backward()
-                self.critic_opt.step()
-                critic_losses.append(float(critic_loss.item()))
-        
-        self.trajectory = []
-        return {
-            'actor_loss': float(np.mean(actor_losses)) if actor_losses else np.nan,
-            'critic_loss': float(np.mean(critic_losses)) if critic_losses else np.nan,
-        }
-
-    def get_value(self, obs):
-        with torch.no_grad():
-            obs_t = torch.tensor(obs, dtype=torch.float32, device=self.device).unsqueeze(0)
-            return self.critic(obs_t).squeeze().item()
+# ============================
+# Comparar PPO vs SAC vs oráculo
+# ============================
+combos = [
+    (5.0, 4.5),
+    (10.0, 5.1),
+    (12.0, 6.5),
+]
 
 
-def train_ppo(env, episodes=500, steps_per_ep=400, device='cpu'):
-    obs_dim = np.prod(env.observation_space.shape) if hasattr(env.observation_space, 'shape') else len(env.reset(obs_format='list')[0])
-    act_dim = env.action_space.shape[0]
-    act_limit = float(env.action_space.high[0])
-    
-    agent = PPOAgent(obs_dim, act_dim, act_limit, lr=1e-3, device=device)
-    
-    metrics = {'returns': [], 'p_out_avg': [], 'p_out_max': [], 'actor_loss': [], 'critic_loss': []}
-    
-    for ep in range(episodes):
-        obs, _ = env.reset(variable=True)
-        obs_arr = np.array(list(obs.values())) if isinstance(obs, dict) else obs
-        ep_ret, ep_p_out_list = 0.0, []
-        
-        for _ in range(steps_per_ep):
-            act, logp, val = agent.act(obs_arr)
-            next_obs, terminated = env.step(act)
-            next_obs_arr = np.array(list(next_obs.values())) if isinstance(next_obs, dict) else next_obs
-            
-            p_out_raw = next_obs['p_out'] if isinstance(next_obs, dict) else reward_function(next_obs)
-            rew = float(p_out_raw / max(env.p.p_rated, 1e-6))
-            
-            agent.store_transition(obs_arr, act, logp, rew, val, float(terminated))
-            ep_p_out_list.append(p_out_raw)
-            ep_ret += rew
-            obs_arr = next_obs_arr
-            
-            if terminated:
-                break
-        
-        last_value = 0.0 if terminated else agent.get_value(obs_arr)
-        info = agent.update(last_value=last_value, epochs=10)
-        metrics['returns'].append(ep_ret)
-        metrics['p_out_avg'].append(np.mean(ep_p_out_list))
-        metrics['p_out_max'].append(np.max(ep_p_out_list))
-        metrics['actor_loss'].append(info['actor_loss'])
-        metrics['critic_loss'].append(info['critic_loss'])
-        
-        if (ep + 1) % 20 == 0:
-            print(f"PPO ep={ep+1}/{episodes} ret={ep_ret:.1f} p_avg={np.mean(ep_p_out_list):.1f}")
-    
-    return metrics, agent
+def run_controller_on_condition(controller_kind, controller_obj, env, device):
+    obs, _ = env.reset(seed=0)
+    obs_dict = env.unwrapped._get_state('dict')
+    done = False
+    times = []
+    pouts = []
+    etas = []
+    fs = []
+    shares = []
+    phase1s = []
+    phase2s = []
+    t = 0.0
+
+    while not done:
+        if controller_kind == 'oracle':
+            action = oracle_controller(obs_dict, env.unwrapped)
+        elif controller_kind == 'ppo':
+            obs_arr = np.asarray(obs, dtype=np.float32)
+            obs_tensor = torch.as_tensor(obs_arr, device=device)
+            with torch.no_grad():
+                action = controller_obj.get_deterministic_action(obs_tensor)
+            action = action.cpu().numpy().squeeze()
+        elif controller_kind == 'sac':
+            obs_arr = np.asarray(obs, dtype=np.float32)
+            action = controller_obj.act(obs_arr, deterministic=True)
+        else:
+            raise ValueError(f"Unknown controller kind: {controller_kind}")
+
+        obs, reward, terminated, truncated, info = env.step(action)
+        done = bool(terminated or truncated)
+
+        times.append(t)
+        pouts.append(env.unwrapped.pout)
+        etas.append(env.unwrapped.eta)
+        fs.append(env.unwrapped.f_sw)
+        shares.append(env.unwrapped.share)
+        phase1s.append(env.unwrapped.phase1_deg)
+        phase2s.append(env.unwrapped.phase2_deg)
+
+        t += env.unwrapped.p.dt
+        obs_dict = env.unwrapped._get_state('dict')
+
+    return {
+        'time': np.array(times),
+        'pout': np.array(pouts),
+        'eta': np.array(etas),
+        'f_sw': np.array(fs),
+        'share': np.array(shares),
+        'phase1_deg': np.array(phase1s),
+        'phase2_deg': np.array(phase2s),
+    }
 
 
-def train_sac(env, episodes=500, steps_per_ep=400, device='cpu'):
-    obs_dim = np.prod(env.observation_space.shape) if hasattr(env.observation_space, 'shape') else len(env.reset(obs_format='list')[0])
-    act_dim = env.action_space.shape[0]
-    act_limit = float(env.action_space.high[0])
-    
-    cfg = SACConfig(device=device, total_steps=episodes*steps_per_ep, batch_size=32, start_steps=100)
-    agent = SACAgent(obs_dim, act_dim, act_limit, cfg)
-    rb = ReplayBuffer(obs_dim, act_dim, 50000, agent.device)
-    
-    metrics = {'returns': [], 'p_out_avg': [], 'p_out_max': [], 'q_loss': [], 'pi_loss': [], 'alpha': []}
-    
-    for ep in range(episodes):
-        obs, _ = env.reset(variable=True)
-        obs_arr = np.array(list(obs.values())) if isinstance(obs, dict) else obs
-        ep_ret, ep_p_out_list, t_step = 0.0, [], 0
-        ep_q_loss, ep_pi_loss, ep_alpha = [], [], []
-        
-        for _ in range(steps_per_ep):
-            if ep * steps_per_ep + t_step < cfg.start_steps:
-                act = env.action_space.sample()
-            else:
-                act = agent.act(obs_arr, deterministic=False)
-            
-            next_obs, terminated = env.step(act)
-            next_obs_arr = np.array(list(next_obs.values())) if isinstance(next_obs, dict) else next_obs
-            p_out_raw = next_obs['p_out'] if isinstance(next_obs, dict) else reward_function(next_obs)
-            rew = float(p_out_raw / max(env.p.p_rated, 1e-6))
-            
-            rb.add(obs_arr, act, rew, next_obs_arr, float(terminated))
-            ep_p_out_list.append(p_out_raw)
-            ep_ret += rew
-            obs_arr = next_obs_arr
-            t_step += 1
-            
-            if ep * steps_per_ep + t_step >= cfg.update_after and (ep * steps_per_ep + t_step) % cfg.update_every == 0:
-                batch = rb.sample(cfg.batch_size)
-                info = agent.update(batch)
-                ep_q_loss.append(info['q_loss'])
-                ep_pi_loss.append(info['pi_loss'])
-                ep_alpha.append(info['alpha'])
-            
-            if terminated:
-                break
-        
-        metrics['returns'].append(ep_ret)
-        metrics['p_out_avg'].append(np.mean(ep_p_out_list))
-        metrics['p_out_max'].append(np.max(ep_p_out_list))
-        metrics['q_loss'].append(float(np.mean(ep_q_loss)) if ep_q_loss else np.nan)
-        metrics['pi_loss'].append(float(np.mean(ep_pi_loss)) if ep_pi_loss else np.nan)
-        metrics['alpha'].append(float(np.mean(ep_alpha)) if ep_alpha else np.nan)
-        
-        if (ep + 1) % 20 == 0:
-            print(f"SAC ep={ep+1}/{episodes} ret={ep_ret:.1f} p_avg={np.mean(ep_p_out_list):.1f}")
-    
-    return metrics, agent
+def plot_three_way_comparison(results_by_label, metric_key, ylabel, title, output_file):
+    styles = {
+        'agent_ppo': {'label': 'agent_ppo', 'linestyle': '-'},
+        'agent_sac': {'label': 'agent_sac', 'linestyle': '--'},
+        'agent_oracle': {'label': 'agent_oracle', 'linestyle': ':'},
+    }
+    plt.figure(figsize=(10, 6))
+    for label, result in results_by_label.items():
+        plt.plot(
+            result['time'],
+            result[metric_key],
+            label=styles[label]['label'],
+            linestyle=styles[label]['linestyle'],
+            linewidth=2,
+        )
+    plt.xlabel('Time (s)')
+    plt.ylabel(ylabel)
+    plt.title(title)
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig(output_file)
+    plt.close()
 
 
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
-print(f"\nTraining PPO and SAC on device: {device}\n")
+for speed, r_load in combos:
+    params_tmp = DWPTParams()
+    params_tmp.speed_mps = speed
+    params_tmp.r_load_dc = r_load
 
-env_ppo = DWPTContinuousShareEnv(params=params, seed=42, system_knowledge='full')
-metrics_ppo, agent_ppo = train_ppo(env_ppo, episodes=50, steps_per_ep=200, device=device)
+    eval_env_ppo = make_env(system_knowledge=system_knowledge)
+    eval_env_sac = make_env(system_knowledge=system_knowledge)
+    eval_env_oracle = DWPTContinuousShareEnv(params=params_tmp, seed=0, system_knowledge=system_knowledge)
 
-env_sac = DWPTContinuousShareEnv(params=params, seed=42, system_knowledge='full')
-metrics_sac, agent_sac = train_sac(env_sac, episodes=50, steps_per_ep=200, device=device)
+    # force same physical condition on all environments
+    eval_env_ppo.unwrapped.p.speed_mps = speed
+    eval_env_ppo.unwrapped.p.r_load_dc = r_load
+    eval_env_sac.unwrapped.p.speed_mps = speed
+    eval_env_sac.unwrapped.p.r_load_dc = r_load
+
+    res_ppo = run_controller_on_condition('ppo', ppo_agent, eval_env_ppo, device)
+    res_sac = run_controller_on_condition('sac', sac_agent, eval_env_sac, device)
+    res_oracle = run_controller_on_condition('oracle', None, eval_env_oracle, device)
+
+    label_suffix = f"speed_{speed}_rload_{r_load}{suffix}"
+    results_by_label = {
+        'agent_ppo': res_ppo,
+        'agent_sac': res_sac,
+        'agent_oracle': res_oracle,
+    }
+
+    plot_three_way_comparison(
+        results_by_label,
+        'pout',
+        'P_out (W)',
+        f'P_out vs time ({label_suffix})',
+        os.path.join(path, f'compare_pout_{label_suffix}.png'),
+    )
+    plot_three_way_comparison(
+        results_by_label,
+        'eta',
+        'Eta',
+        f'Eta vs time ({label_suffix})',
+        os.path.join(path, f'compare_eta_{label_suffix}.png'),
+    )
+    plot_three_way_comparison(
+        results_by_label,
+        'f_sw',
+        'f_sw (Hz)',
+        f'f_sw vs time ({label_suffix})',
+        os.path.join(path, f'compare_fsw_{label_suffix}.png'),
+    )
+    plot_three_way_comparison(
+        results_by_label,
+        'share',
+        'share',
+        f'share vs time ({label_suffix})',
+        os.path.join(path, f'compare_share_{label_suffix}.png'),
+    )
+    plot_three_way_comparison(
+        results_by_label,
+        'phase1_deg',
+        'phase1 (deg)',
+        f'phase1 vs time ({label_suffix})',
+        os.path.join(path, f'compare_phase1_{label_suffix}.png'),
+    )
+    plot_three_way_comparison(
+        results_by_label,
+        'phase2_deg',
+        'phase2 (deg)',
+        f'phase2 vs time ({label_suffix})',
+        os.path.join(path, f'compare_phase2_{label_suffix}.png'),
+    )
+
+    eval_env_ppo.close()
+    eval_env_sac.close()
+    eval_env_oracle.close()
 
 
-def moving_average(x, w=20):
-    arr = np.asarray(x, dtype=float)
-    if arr.size == 0:
-        return arr
-    if w <= 1 or arr.size < w:
-        return arr
-    return np.convolve(arr, np.ones(w) / w, mode='valid')
+###############################################################################
+# TRAINING PLOTS
+###############################################################################
 
-fig, axes = plt.subplots(1, 3, figsize=(15, 4))
-
-axes[0].plot(metrics_ppo['returns'], label='PPO', linewidth=2)
-axes[0].plot(metrics_sac['returns'], label='SAC', linewidth=2)
-axes[0].set_xlabel('Episodio')
-axes[0].set_ylabel('Retorno acumulado')
-axes[0].set_title('Comparación PPO vs SAC')
-axes[0].legend()
-axes[0].grid(True, alpha=0.3)
-
-axes[1].plot(metrics_ppo['p_out_avg'], label='PPO', linewidth=2)
-axes[1].plot(metrics_sac['p_out_avg'], label='SAC', linewidth=2)
-axes[1].set_xlabel('Episodio')
-axes[1].set_ylabel('Potencia transferida promedio (W)')
-axes[1].set_title('Potencia promedio por episodio')
-axes[1].legend()
-axes[1].grid(True, alpha=0.3)
-
-axes[2].plot(metrics_ppo['p_out_max'], label='PPO', linewidth=2)
-axes[2].plot(metrics_sac['p_out_max'], label='SAC', linewidth=2)
-axes[2].set_xlabel('Episodio')
-axes[2].set_ylabel('Potencia transferida máxima (W)')
-axes[2].set_title('Potencia máxima por episodio')
-axes[2].legend()
-axes[2].grid(True, alpha=0.3)
-
+plt.figure(figsize=(10, 6))
+plt.plot(ppo_history["episode_returns"])
+plt.xlabel("Episode")
+plt.ylabel("Return")
+plt.title("PPO Episode Returns")
+plt.grid(True)
 plt.tight_layout()
-plt.savefig('training_comparison.png')
+plt.savefig(os.path.join(path, "ppo_episode_returns.png"))
 plt.close()
 
-# Guardar métricas de entrenamiento
-np.savez(
-    'metrics_ppo.npz',
-    returns=np.array(metrics_ppo['returns']),
-    p_out_avg=np.array(metrics_ppo['p_out_avg']),
-    p_out_max=np.array(metrics_ppo['p_out_max']),
-    actor_loss=np.array(metrics_ppo['actor_loss']),
-    critic_loss=np.array(metrics_ppo['critic_loss'])
-)
-np.savez(
-    'metrics_sac.npz',
-    returns=np.array(metrics_sac['returns']),
-    p_out_avg=np.array(metrics_sac['p_out_avg']),
-    p_out_max=np.array(metrics_sac['p_out_max']),
-    q_loss=np.array(metrics_sac['q_loss']),
-    pi_loss=np.array(metrics_sac['pi_loss']),
-    alpha=np.array(metrics_sac['alpha'])
-)
-
-fig2, axes2 = plt.subplots(2, 2, figsize=(12, 8))
-axes2[0, 0].plot(moving_average(metrics_ppo['returns'], 20), label='PPO MA(20)', linewidth=2)
-axes2[0, 0].plot(moving_average(metrics_sac['returns'], 20), label='SAC MA(20)', linewidth=2)
-axes2[0, 0].set_title('Retorno suavizado')
-axes2[0, 0].grid(True, alpha=0.3)
-axes2[0, 0].legend()
-
-axes2[0, 1].plot(metrics_ppo['actor_loss'], label='PPO actor_loss', linewidth=1.5)
-axes2[0, 1].plot(metrics_ppo['critic_loss'], label='PPO critic_loss', linewidth=1.5)
-axes2[0, 1].set_title('PPO losses')
-axes2[0, 1].grid(True, alpha=0.3)
-axes2[0, 1].legend()
-
-axes2[1, 0].plot(metrics_sac['q_loss'], label='SAC q_loss', linewidth=1.5)
-axes2[1, 0].plot(metrics_sac['pi_loss'], label='SAC pi_loss', linewidth=1.5)
-axes2[1, 0].set_title('SAC losses')
-axes2[1, 0].grid(True, alpha=0.3)
-axes2[1, 0].legend()
-
-axes2[1, 1].plot(metrics_sac['alpha'], label='SAC alpha', linewidth=1.5)
-axes2[1, 1].set_title('SAC temperatura alpha')
-axes2[1, 1].grid(True, alpha=0.3)
-axes2[1, 1].legend()
-
+plt.figure(figsize=(10, 6))
+plt.plot(ppo_history["mean_rewards"])
+plt.xlabel("Iteration")
+plt.ylabel("Mean Rollout Reward")
+plt.title("PPO Mean Rollout Reward")
+plt.grid(True)
 plt.tight_layout()
-plt.savefig('training_diagnostics.png')
+plt.savefig(os.path.join(path, "ppo_mean_rewards.png"))
 plt.close()
 
-print(f"\nPPO - Retorno final: {metrics_ppo['returns'][-1]:.2f}, P_out promedio: {metrics_ppo['p_out_avg'][-1]:.2f}, P_out máx: {metrics_ppo['p_out_max'][-1]:.2f}")
-print(f"SAC - Retorno final: {metrics_sac['returns'][-1]:.2f}, P_out promedio: {metrics_sac['p_out_avg'][-1]:.2f}, P_out máx: {metrics_sac['p_out_max'][-1]:.2f}")
+plt.figure(figsize=(10, 6))
+plt.plot(ppo_history["policy_losses"])
+plt.xlabel("Update")
+plt.ylabel("Policy Loss")
+plt.title("PPO Policy Loss")
+plt.grid(True)
+plt.tight_layout()
+plt.savefig(os.path.join(path, "ppo_policy_loss.png"))
+plt.close()
+
+plt.figure(figsize=(10, 6))
+plt.plot(ppo_history["value_losses"])
+plt.xlabel("Update")
+plt.ylabel("Value Loss")
+plt.title("PPO Value Loss")
+plt.grid(True)
+plt.tight_layout()
+plt.savefig(os.path.join(path, "ppo_value_loss.png"))
+plt.close()
+
+plt.figure(figsize=(10, 6))
+plt.plot(ppo_history["entropy_losses"])
+plt.xlabel("Update")
+plt.ylabel("Entropy")
+plt.title("PPO Policy Entropy")
+plt.grid(True)
+plt.tight_layout()
+plt.savefig(os.path.join(path, "ppo_entropy.png"))
+plt.close()
 
 
+def save_line_plot(y_values, title, xlabel, ylabel, output_name):
+    plt.figure(figsize=(10, 6))
+    plt.plot(y_values)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.title(title)
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig(os.path.join(path, output_name))
+    plt.close()
 
+
+save_line_plot(
+    [ret for _, ret in sac_history["episode_returns"]],
+    "SAC Episode Returns",
+    "Episode",
+    "Return",
+    "sac_episode_returns.png",
+)
+save_line_plot(
+    sac_history["mean_rewards"],
+    "SAC Mean Rewards",
+    "Episode",
+    "Mean Reward",
+    "sac_mean_rewards.png",
+)
+save_line_plot(
+    sac_history["q_loss"],
+    "SAC Q Loss",
+    "Update",
+    "Q Loss",
+    "sac_q_loss.png",
+)
+save_line_plot(
+    sac_history["pi_loss"],
+    "SAC Policy Loss",
+    "Update",
+    "Policy Loss",
+    "sac_pi_loss.png",
+)
+save_line_plot(
+    sac_history["alpha"],
+    "SAC Alpha",
+    "Update",
+    "Alpha",
+    "sac_alpha.png",
+)
+save_line_plot(
+    sac_history["alpha_loss"],
+    "SAC Alpha Loss",
+    "Update",
+    "Alpha Loss",
+    "sac_alpha_loss.png",
+)
+save_line_plot(
+    sac_history["logp_pi"],
+    "SAC Log Prob Policy",
+    "Update",
+    "Logp Pi",
+    "sac_logp_pi.png",
+)
+save_line_plot(
+    sac_history["q1_mean"],
+    "SAC Q1 Mean",
+    "Update",
+    "Q1 Mean",
+    "sac_q1_mean.png",
+)

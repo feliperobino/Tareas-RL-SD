@@ -4,16 +4,16 @@ import os
 import random
 import time
 
-import gym
+# import gym
 import numpy as np
-import roboschool
+# import roboschool
 import torch
 from torch.utils.tensorboard import SummaryWriter
 
 from ddpg import DDPG
 from utils.noise import OrnsteinUhlenbeckActionNoise
 from utils.replay_memory import ReplayMemory, Transition
-from wrappers.normalized_actions import NormalizedActions
+# from wrappers.normalized_actions import NormalizedActions
 
 # Create logger
 logger = logging.getLogger('train')

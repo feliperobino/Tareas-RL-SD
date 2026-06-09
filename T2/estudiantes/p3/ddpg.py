@@ -1,4 +1,4 @@
-# DDPG de 
+# DDPG de github.com/songrotek/DDPG/blob/master/ddpg.py
 
 import gc
 import logging
@@ -11,65 +11,63 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.optim import Adam
 
-try:
-    from utils.nets import Actor, Critic
-except ModuleNotFoundError:
-    def fanin_init(size, fanin=None):
-        fanin = fanin or size[0]
-        v = 1.0 / np.sqrt(fanin)
-        return torch.Tensor(size).uniform_(-v, v)
+
+def fanin_init(size, fanin=None):
+    fanin = fanin or size[0]
+    v = 1.0 / np.sqrt(fanin)
+    return torch.Tensor(size).uniform_(-v, v)
 
 
-    class Actor(nn.Module):
-        def __init__(self, hidden_size, num_inputs, action_space, init_w=3e-3):
-            super().__init__()
-            hidden1, hidden2 = int(hidden_size[0]), int(hidden_size[1])
-            self.fc1 = nn.Linear(num_inputs, hidden1)
-            self.fc2 = nn.Linear(hidden1, hidden2)
-            self.fc3 = nn.Linear(hidden2, int(action_space.shape[0]))
-            self.relu = nn.ReLU()
-            self.tanh = nn.Tanh()
-            self.action_low = torch.as_tensor(action_space.low, dtype=torch.float32)
-            self.action_high = torch.as_tensor(action_space.high, dtype=torch.float32)
-            self.action_scale = (self.action_high - self.action_low) / 2.0
-            self.action_bias = (self.action_high + self.action_low) / 2.0
-            self.init_weights(init_w)
+class Actor(nn.Module):
+    def __init__(self, hidden_size, num_inputs, action_space, init_w=3e-3):
+        super().__init__()
+        hidden1, hidden2 = int(hidden_size[0]), int(hidden_size[1])
+        self.fc1 = nn.Linear(num_inputs, hidden1)
+        self.fc2 = nn.Linear(hidden1, hidden2)
+        self.fc3 = nn.Linear(hidden2, int(action_space.shape[0]))
+        self.relu = nn.ReLU()
+        self.tanh = nn.Tanh()
+        self.action_low = torch.as_tensor(action_space.low, dtype=torch.float32)
+        self.action_high = torch.as_tensor(action_space.high, dtype=torch.float32)
+        self.action_scale = (self.action_high - self.action_low) / 2.0
+        self.action_bias = (self.action_high + self.action_low) / 2.0
+        self.init_weights(init_w)
 
-        def init_weights(self, init_w):
-            self.fc1.weight.data = fanin_init(self.fc1.weight.data.size())
-            self.fc2.weight.data = fanin_init(self.fc2.weight.data.size())
-            self.fc3.weight.data.uniform_(-init_w, init_w)
+    def init_weights(self, init_w):
+        self.fc1.weight.data = fanin_init(self.fc1.weight.data.size())
+        self.fc2.weight.data = fanin_init(self.fc2.weight.data.size())
+        self.fc3.weight.data.uniform_(-init_w, init_w)
 
-        def forward(self, x):
-            out = self.relu(self.fc1(x))
-            out = self.relu(self.fc2(out))
-            out = self.tanh(self.fc3(out))
-            return self.action_bias.to(out.device) + self.action_scale.to(out.device) * out
+    def forward(self, x):
+        out = self.relu(self.fc1(x))
+        out = self.relu(self.fc2(out))
+        out = self.tanh(self.fc3(out))
+        return self.action_bias.to(out.device) + self.action_scale.to(out.device) * out
 
 
-    class Critic(nn.Module):
-        def __init__(self, hidden_size, num_inputs, action_space, init_w=3e-3):
-            super().__init__()
-            hidden1, hidden2 = int(hidden_size[0]), int(hidden_size[1])
-            n_actions = int(action_space.shape[0])
-            self.fc1 = nn.Linear(num_inputs, hidden1)
-            self.fc2 = nn.Linear(hidden1 + n_actions, hidden2)
-            self.fc3 = nn.Linear(hidden2, 1)
-            self.relu = nn.ReLU()
-            self.init_weights(init_w)
+class Critic(nn.Module):
+    def __init__(self, hidden_size, num_inputs, action_space, init_w=3e-3):
+        super().__init__()
+        hidden1, hidden2 = int(hidden_size[0]), int(hidden_size[1])
+        n_actions = int(action_space.shape[0])
+        self.fc1 = nn.Linear(num_inputs, hidden1)
+        self.fc2 = nn.Linear(hidden1 + n_actions, hidden2)
+        self.fc3 = nn.Linear(hidden2, 1)
+        self.relu = nn.ReLU()
+        self.init_weights(init_w)
 
-        def init_weights(self, init_w):
-            self.fc1.weight.data = fanin_init(self.fc1.weight.data.size())
-            self.fc2.weight.data = fanin_init(self.fc2.weight.data.size())
-            self.fc3.weight.data.uniform_(-init_w, init_w)
+    def init_weights(self, init_w):
+        self.fc1.weight.data = fanin_init(self.fc1.weight.data.size())
+        self.fc2.weight.data = fanin_init(self.fc2.weight.data.size())
+        self.fc3.weight.data.uniform_(-init_w, init_w)
 
-        def forward(self, state, action):
-            out = self.relu(self.fc1(state))
-            out = self.relu(self.fc2(torch.cat([out, action], dim=1)))
-            out = self.fc3(out)
-            return out
+    def forward(self, state, action):
+        out = self.relu(self.fc1(state))
+        out = self.relu(self.fc2(torch.cat([out, action], dim=1)))
+        out = self.fc3(out)
+        return out
 
-logger = logging.getLogger('ddpg')
+logger = logging.getLogger('ddpg')  
 logger.setLevel(logging.INFO)
 logger.addHandler(logging.StreamHandler())
 
@@ -267,7 +265,7 @@ class DDPG(object):
             logger.info("Loading checkpoint...({})".format(checkpoint_path))
             key = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-            checkpoint = torch.load(checkpoint_path, map_location=key)
+            checkpoint = torch.load(checkpoint_path, map_location=key, weights_only=False)
             start_timestep = checkpoint['last_timestep'] + 1
             self.actor.load_state_dict(checkpoint['actor'])
             self.critic.load_state_dict(checkpoint['critic'])
