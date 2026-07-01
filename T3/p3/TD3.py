@@ -1,6 +1,7 @@
 import copy
 import random
 import time
+import os
 from dataclasses import dataclass
 from typing import Optional, Tuple
 import matplotlib
@@ -89,11 +90,12 @@ class Actor(nn.Module):
         self.net = nn.Sequential(
             nn.Linear(obs_dim, hidden), nn.ReLU(),
             nn.Linear(hidden, hidden), nn.ReLU(),
+            nn.Dropout(0.3),
             nn.Linear(hidden, act_dim), nn.Tanh(),
         )
 
         # zero-init last layer
-        last_linear = self.net[4]
+        last_linear = self.net[5]
         init.uniform_(last_linear.weight, -0.003, 0.003)
         init.uniform_(last_linear.bias, -0.003, 0.003)
 
@@ -296,6 +298,9 @@ class TD3Agent:
     def train(self, env, references, known_params, unknown_params, seed: int = 0, steps: int = 50_000, eval_every: int = 1_000):
         set_seed(seed)
 
+        results_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'p3'))
+        os.makedirs(results_dir, exist_ok=True)
+
         obs_dim = int(len(env.x))*2 + 4
         act_dim = 4
 
@@ -319,6 +324,11 @@ class TD3Agent:
         ep_return = 0.0
         ep_length = 0
         ep_num = 0
+
+        # para guardar el modelo
+        best_return = -np.inf
+        best_actor_state = None
+
         window_info = []
         ep_length_history = []
 
@@ -360,6 +370,13 @@ class TD3Agent:
             if done:
                 ep_num += 1
                 self.metrics["episode_returns"].append(ep_return)
+                # guardamos el mejor
+                if ep_return > best_return:
+                    best_return = ep_return
+                    best_actor_state = {
+                        k: v.detach().cpu().clone() for k, v in self.actor.state_dict().items()
+                    }
+
                 print(
                     f"[train] step={t:>7d}  ep={ep_num:>4d}  "
                     f"return={ep_return:>8.2f}  len={ep_length:>4d}  "
@@ -401,6 +418,15 @@ class TD3Agent:
                     self.metrics["target_mean"].append(tm)
                     self.metrics["target_std"].append(ts)
 
+        if best_actor_state is None:
+            best_actor_state = {
+                k: v.detach().cpu().clone() for k, v in self.actor.state_dict().items()
+            }
+
+        best_model_path = os.path.join(results_dir, "best_td3_actor.pt")
+        torch.save(best_actor_state, best_model_path)
+        print(f"[train] best model saved to {best_model_path} | best_return={best_return:.2f}")
+
 
         plt.figure(figsize=(15, 8))
         plt.subplot(2, 1, 1)
@@ -411,6 +437,7 @@ class TD3Agent:
         plt.grid(True)
         plt.legend()
         plt.tight_layout()
+        plt.savefig(os.path.join(results_dir, 'td3_train_episode_returns.png'), dpi=200, bbox_inches='tight')
         plt.show()
 
         return self.metrics
@@ -424,6 +451,8 @@ class TD3Agent:
     ):
 
         self.actor.eval()
+        results_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'p3'))
+        os.makedirs(results_dir, exist_ok=True)
 
         act_dim = 4
         f_hover = known_params["m"] * known_params["g"] / 4.0
@@ -482,7 +511,6 @@ class TD3Agent:
             pos_error = np.linalg.norm(state[[0, 2, 4]] - ref[[0, 2, 4]])
             pos_errors.append(float(pos_error))
 
-            # Same next_obs construction as training
             obs = self.build_obs(
                 state,
                 ref,
@@ -536,6 +564,7 @@ class TD3Agent:
             f"RMSE pos={rmse_pos:.3f}, steps={len(states)}, unstable={unstable}"
         )
         plt.tight_layout()
+        plt.savefig(os.path.join(results_dir, 'td3_eval_xyz.png'), dpi=200, bbox_inches='tight')
 
         fig = plt.figure(figsize=(10, 7))
         ax = fig.add_subplot(111, projection="3d")
@@ -563,6 +592,7 @@ class TD3Agent:
         ax.set_title("Quadrotor TD3 — Reference vs Followed Trajectory")
         ax.legend()
         plt.tight_layout()
+        plt.savefig(os.path.join(results_dir, 'td3_eval_trajectory_3d.png'), dpi=200, bbox_inches='tight')
 
         plt.figure(figsize=(15, 8))
 
@@ -583,6 +613,7 @@ class TD3Agent:
 
         plt.suptitle("TD3 actions and rewards")
         plt.tight_layout()
+        plt.savefig(os.path.join(results_dir, 'td3_eval_actions_rewards.png'), dpi=200, bbox_inches='tight')
         plt.show()
 
         print(

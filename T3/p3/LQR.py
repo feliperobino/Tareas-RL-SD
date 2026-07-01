@@ -2,7 +2,19 @@ import numpy as np
 import cvxpy as cp
 import matplotlib.pyplot as plt
 import time
+import os
 from scipy.linalg import solve_discrete_are
+
+
+# Default cost matrices used by reward_function_simple.
+Q_lqr = np.diag([
+    5., 2.,  # x, x_dot
+    5., 2.,  # y, y_dot
+    5., 2.,  # z, z_dot
+    1., 1., 0.1,  # phi, theta, psi
+    0.1, 0.1, 0.1,  # p, q, r
+])
+R_lqr = np.eye(4) * 0.01
 
 
 def transform_references(references_raw):
@@ -55,9 +67,17 @@ class LQR:
         u = - self.K @ x_error
         u_out = np.clip(u + self.u_eq, self.u_lims[0], self.u_lims[1])
         return u_out
+    
+    def recompute_K(self, Q, R): ## helper nueva para meter sintonización de valores con TD3
+        Ab, Bd, _ = self.model.get_linear_system(x_eq=self.x_eq, u_eq=self.u_eq)
+        P = solve_discrete_are(Ab, Bd, Q, R)
+
+        self.K = np.linalg.inv(R + Bd.T @ P @ Bd) @ Bd.T @ P @ Ab
+        self.Q = Q
+        self.R = R
 
 
-def reward_function_complex(ref, state, a_rl, prev_a_rl, f_hover): # To be used with the Sintonization Task
+def reward_function_complex(ref, state, a_rl, prev_a_rl, f_hover):
         pos_err = state[[0, 2, 4]] - ref[[0, 2, 4]]
         vel_err = state[[1, 3, 5]] - ref[[1, 3, 5]]
         roll_pitch = state[[6, 7]]
@@ -84,10 +104,10 @@ def reward_function_complex(ref, state, a_rl, prev_a_rl, f_hover): # To be used 
         return float(reward)
 
 
-def reward_function_simple(ref, states, inputs): # To be used for the residual task
+def reward_function_simple(ref, states, inputs, Q=Q_lqr, R=R_lqr): # To be used for the residual task
     err = ref - states
-    state_cost = err.reshape(1, -1) @ Q_lqr @ err.reshape(-1, 1)
-    u_cost = inputs.reshape(1, -1) @ R_lqr @ inputs.reshape(-1, 1)
+    state_cost = err.reshape(1, -1) @ Q @ err.reshape(-1, 1)
+    u_cost = inputs.reshape(1, -1) @ R @ inputs.reshape(-1, 1)
     return -state_cost[0, 0] - u_cost[0, 0]
 
 
@@ -96,6 +116,9 @@ if __name__ == '__main__':
     from scripts.Quadrotor3D import Quadrotor3D
     from scripts.QuadrotorTrajectories import QuadrotorTrajectory
     import copy
+
+    results_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'p3'))
+    os.makedirs(results_dir, exist_ok=True)
 
     # Known parameters
     known_params = {
@@ -161,6 +184,10 @@ if __name__ == '__main__':
     total_reward = 0
     total_reward_simp = 0
     init_time = time.time()
+    
+    rmse_inst_list = []
+    pos_sq_err_hist = []
+
     for k in range(N_steps):
         # Extract the reference
         ref = references[:, k]
@@ -177,6 +204,14 @@ if __name__ == '__main__':
 
 
         x_current = np.array(system.x)
+        pos_err = x_current[[0, 2, 4]] - ref[[0, 2, 4]]
+        pos_sq_err = pos_err ** 2
+        pos_sq_err_hist.append(pos_sq_err)
+
+        rmse_inst = float(np.sqrt(np.mean(pos_sq_err)))
+        rmse_inst_list.append(rmse_inst)
+
+        rmse_cum = float(np.sqrt(np.mean(np.array(pos_sq_err_hist))))
         x_list.append(np.array(system.x).reshape(-1, 1))
         y_list.append(np.array(y).reshape(-1, 1))
         u_list.append(np.array(u_opt).reshape(-1, 1))
@@ -184,7 +219,7 @@ if __name__ == '__main__':
         last_u = u_opt
 
         if k % 100 == 0:
-            print('Step {}|{}'.format(k, N_steps))
+            print('Step {}|{} | RMSE_inst(pos): {:.4f} m | RMSE_cum(pos): {:.4f} m'.format(k, N_steps, rmse_inst, rmse_cum))
 
     print('Total time: {}'.format(time.time() - init_time))
     print('Total reward: {}'.format(total_reward))
@@ -195,8 +230,11 @@ if __name__ == '__main__':
     u_list = np.concatenate(u_list, axis=1)
     print(x_list.shape, references.shape)
 
-    error = np.sqrt(np.sum((x_list[[0, 2, 4], :] - references[[0, 2, 4], :])**2))
-    print('Error = {}'.format(error))
+    pos_err_all = x_list[[0, 2, 4], :] - references[[0, 2, 4], :]
+    rmse_xyz = np.sqrt(np.mean(pos_err_all**2, axis=1))
+    rmse_pos = np.sqrt(np.mean(pos_err_all**2))
+    print('RMSE final x,y,z [m] = {}'.format(rmse_xyz))
+    print('RMSE final posicion global [m] = {}'.format(rmse_pos))
 
 
     plt.figure(figsize=(15, 7))
@@ -225,6 +263,7 @@ if __name__ == '__main__':
     plt.legend()
 
     plt.tight_layout()
+    plt.savefig(os.path.join(results_dir, 'lqr_tracking_xyz_u.png'), dpi=200, bbox_inches='tight')
     plt.show()
 
     fig = plt.figure(figsize=(10, 7))
@@ -242,4 +281,5 @@ if __name__ == '__main__':
     ax.set_title('Quadrotor LQR — Reference vs Followed Trajectory')
     ax.legend()
     plt.tight_layout()
+    plt.savefig(os.path.join(results_dir, 'lqr_trajectory_3d.png'), dpi=200, bbox_inches='tight')
     plt.show()

@@ -60,10 +60,10 @@ class DatasetAnalyzer:
 
 
 if __name__ == '__main__':
-    with open('data/comparisons.pkl', 'rb') as f:
+    with open('p2/data/comparisons.pkl', 'rb') as f:
         comp_dataset = pickle.load(f)
 
-    with open('data/expert_trajectories.pkl', 'rb') as f:
+    with open('p2/data/expert_trajectories.pkl', 'rb') as f:
         expert_trajectories = pickle.load(f)
 
     print(comp_dataset[0])

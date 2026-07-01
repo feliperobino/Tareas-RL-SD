@@ -9,6 +9,8 @@ from scripts.fermentation_env import WineFermentationEnv
 from scripts.quality_functions import maceration_extraction, get_wine_quality_score
 import time
 
+import os
+
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 class Actor(nn.Module):
@@ -154,17 +156,224 @@ class DAGGER:
         frac = max(0.0, 1.0 - step / float(total_steps))
         return end + (start - end) * frac
 
+    def collect_trajectory(self, actor, beta):
+        env = WineFermentationEnv()
+        
+        obs = env.reset()
+        done = False
+
+        expert = WineExpertController()
+
+        states = []
+        expert_actions = []
+        learner_actions = []
+
+        while not done:
+            # acción del experto
+            a_exp = expert(obs, float(obs[7]))
+
+            # acción aprendiz
+            a_learn = self.get_action(actor, obs)
+
+            # política DAGGER
+            if np.random.rand() < beta:
+                action = a_exp
+            else:
+                action = a_learn
+
+            states.append(obs)
+            expert_actions.append(a_exp)
+            learner_actions.append(a_learn)
+
+            obs, done, info = env.step(action)
+
+        return {
+            "trajectory": np.array(states),
+            "expert_actions": np.array(expert_actions),
+            "learner_actions": np.array(learner_actions)
+        }
+
     def run(self, expert_trajectories, n_trajs=100, epochs=100): #COMPLETAR
         actor = self.sup_controller(expert_trajectories, epochs=epochs)
 
+        dataset = list(expert_trajectories)
+
+        for i in range(n_trajs): # for i = 1 to N do
+            # let pi_i = beta_i * pi_expert + (1-beta_i) * pi_learner
+            
+            beta = self.linear_schedule(i, n_trajs, start=1.0, end=0.0)
+            # sample T-step trajs ysing pi_i
+            # get dataset D_i = {s, pi*(s)} of visited states by pi_i
+            new_traj = self.collect_trajectory(actor, beta)
+
+            # aggregate datasets D = D U D_i
+            dataset.append({
+                "trajectory": new_traj["trajectory"],
+                "actions": new_traj["expert_actions"]
+            })
+
+            # train classifier pi_learner on D
+            actor = self.sup_controller(dataset, epochs=epochs)
+
+        # return best pi_learner on validation
+        return actor
 
 
 if __name__ == "__main__":
     # Training Phase
-    with open('data/expert_trajectories.pkl', 'rb') as f:
+    with open('p2/data/expert_trajectories.pkl', 'rb') as f:
         expert_trajectories = pickle.load(f)
 
     dagger = DAGGER()
     actor = dagger.run(expert_trajectories, n_trajs=50)
 
+    path = 'results/p2/dagger'
+    os.makedirs(path, exist_ok=True)
 
+    # mismas condiciones iniciales
+    S0 = np.random.uniform(210, 260)
+    T0 = np.random.uniform(15, 22)
+    N0 = np.random.uniform(150, 280)
+
+    conds = f'S0={S0:.3f}_T0={T0:.3f}_N0={N0:.3f}'
+
+    ############
+    # EXPERTO
+    env_exp = WineFermentationEnv(S0=S0, T0=T0, N0=N0)
+    ctrl = WineExpertController()
+    ctrl.reset()
+
+    obs = env_exp.reset(S0=S0, T0=T0, N0=N0)
+    done = False
+
+    obs_exp = [obs.copy()]
+    act_exp = []
+
+    while not done:
+        t = float(obs[7])
+        action = ctrl(obs, t)
+
+        obs, done, info = env_exp.step(action)
+        act_exp.append(action.copy())
+        obs_exp.append(obs.copy())
+    
+    obs_exp = np.array(obs_exp[:-1], dtype=np.float32)
+    act_exp = np.array(act_exp, dtype=np.float32)
+
+    # guardar política DAGGER
+    torch.save(actor.state_dict(), os.path.join(path, 'dagger_policy.pt'))
+
+    #############
+    # APRENDIZ DAGGER
+    env_dag = WineFermentationEnv(S0=S0, T0=T0, N0=N0)
+
+    obs = env_dag.reset(S0=S0, T0=T0, N0=N0)
+    done = False
+
+    obs_dag = [obs.copy()]
+    act_dag = []
+
+    while not done:
+        action = dagger.get_action(actor, obs)
+
+        obs, done, info = env_dag.step(action)
+        act_dag.append(action.copy())
+        obs_dag.append(obs.copy())
+
+    obs_dag = np.array(obs_dag[:-1], dtype=np.float32)
+    act_dag = np.array(act_dag, dtype=np.float32)
+
+
+    ########
+    # Scores
+    traj_exp = env_exp.get_trajectory()
+    traj_dag = env_dag.get_trajectory()
+
+    score_exp = get_wine_quality_score(maceration_extraction(traj_exp))
+    score_dag = get_wine_quality_score(maceration_extraction(traj_dag))
+
+    print(f"Score Experto: {score_exp}")
+    print(f"Score DAGGER: {score_dag}")
+
+    np.save(os.path.join(path, 'score_exp_' + conds + '.npy'), np.array(score_exp))
+    np.save(os.path.join(path, 'score_dag_' + conds + '.npy'), np.array(score_dag))
+
+    ######
+    ### Plots
+    names = [
+        'Res Sugar',
+        'Etanol',
+        'Viable yeast',
+        'Dead yeast',
+        'Neast-assimilable Nitrogen',
+        'Disolved CO2',
+        'T',
+        't'
+    ]
+
+    plt.figure(figsize=[15,8])
+    plt.title('Observations for ' + conds)
+
+    for i in range(obs_exp.shape[1]):
+
+        plt.subplot(2,4,i+1)
+
+        plt.plot(
+            obs_exp[:,i],
+            label='Expert'
+        )
+
+        plt.plot(
+            obs_dag[:,i],
+            '--',
+            label='DAGGER'
+        )
+
+        plt.legend()
+        plt.grid(True)
+
+    plt.tight_layout()
+
+    plt.savefig(
+        os.path.join(
+            path,
+            'obs_comparison.png'
+        )
+    )
+
+
+    ## ACCIONES
+    act_names = [
+        'T_setpoint',
+        'Nitrogen'
+    ]
+
+    plt.figure(figsize=[15,8])
+    plt.title('Actions for ' + conds)
+
+    for i in range(act_exp.shape[1]):
+
+        plt.subplot(2,1,i+1)
+
+        plt.plot(
+            act_exp[:,i],
+            label='Expert'
+        )
+
+        plt.plot(
+            act_dag[:,i],
+            '--',
+            label='DAGGER'
+        )
+
+        plt.legend()
+        plt.grid(True)
+
+    plt.tight_layout()
+
+    plt.savefig(
+        os.path.join(
+            path,
+            'act_comparison.png'
+        )
+    )
